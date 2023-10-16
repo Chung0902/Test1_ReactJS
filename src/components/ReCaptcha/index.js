@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
+import { NavLink } from "react-router-dom";
 
 const ReCaptcha = () => {
   const [formData, setFormData] = useState({
@@ -126,6 +127,9 @@ const ReCaptcha = () => {
         >
           Đăng nhập
         </button>
+        <NavLink to="/register">
+          <p className="register">Đăng ký nếu chưa có tài khoản</p>
+        </NavLink>
       </form>
     </div>
   );

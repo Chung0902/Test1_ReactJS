@@ -1,6 +1,7 @@
 import React from "react";
-import ReCaptcha from "../ReCaptcha";
-import chibiImage from "../../images/chibi2.png";
+import ReCaptcha from "../components/ReCaptcha";
+import chibiImage from "../images/chibi2.png";
+
 
 const Login = () => {
   return (
