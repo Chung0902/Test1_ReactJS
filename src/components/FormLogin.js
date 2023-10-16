@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import ReCAPTCHA from "react-google-recaptcha";
 import { NavLink } from "react-router-dom";
+import ReCaptcha from "./ReCaptcha";
 
-const ReCaptcha = () => {
+
+const FormLogin = () => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -107,14 +108,7 @@ const ReCaptcha = () => {
           {errors.password && <p style={{ color: "red" }}>{errors.password}</p>}
         </label>
         <br />
-        <div className="captcha">
-          <ReCAPTCHA
-            sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
-            onChange={handleRecaptchaChange}
-            hl="vi" // Thêm thuộc tính này để đặt ngôn ngữ thành tiếng Việt
-          />
-        </div>
-
+        <ReCaptcha handleRecaptchaChange={handleRecaptchaChange} />
         <br />
         <button
           type="submit"
@@ -135,4 +129,4 @@ const ReCaptcha = () => {
   );
 };
 
-export default ReCaptcha;
+export default FormLogin;
