@@ -54,6 +54,7 @@ const Register = () => {
             value={formik.values.name}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
+            className="input1"
           />
           {formik.errors.name && formik.touched.name && (
             <p>{formik.errors.name}</p>
@@ -68,6 +69,7 @@ const Register = () => {
             value={formik.values.age}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
+            className="age input1"
           />
           {formik.errors.age && formik.touched.age && (
             <p>{formik.errors.age}</p>
@@ -83,6 +85,7 @@ const Register = () => {
             value={formik.values.email}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
+            className="email input1"
           />
           {formik.errors.email && formik.touched.email && (
             <p>{formik.errors.email}</p>
@@ -97,6 +100,7 @@ const Register = () => {
             value={formik.values.address}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
+            className="address input1"
           />
           {formik.errors.address && formik.touched.address && (
             <p>{formik.errors.address}</p>
@@ -111,6 +115,7 @@ const Register = () => {
             value={formik.values.password}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
+            className="password input1"
           />
           {formik.errors.password && formik.touched.password && (
             <p>{formik.errors.password}</p>
@@ -119,7 +124,7 @@ const Register = () => {
         <br />
         <ReCaptcha />
         <br />
-        <button type="submit" className="btn btn-primary" value="Submit Form">
+        <button type="submit" className="btn btn-primary dangky" value="Submit Form">
           Đăng ký
         </button>
       </form>

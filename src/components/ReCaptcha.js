@@ -13,7 +13,7 @@ const ReCaptcha = ({ handleRecaptchaChange }) => {
 
 
   return (
-    <div className="captcha">
+    <div className="captcha captcha2">
       <ReCAPTCHA
         sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
         onChange={onRecaptchaChange}

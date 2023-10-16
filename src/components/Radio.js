@@ -16,7 +16,7 @@ const Radio = ({ handleGenderChange }) => {
 
   return (
     <div>
-      <form>
+      <form className="radio">
         <input
           type="radio"
           name="gender"
@@ -24,6 +24,7 @@ const Radio = ({ handleGenderChange }) => {
           value="nam"
           checked={formik.values.gender === "nam"}
           onChange={handleRadioChange}
+          className="nam"
         />
         <label htmlFor="nam">Nam</label>
         <input
@@ -33,6 +34,7 @@ const Radio = ({ handleGenderChange }) => {
           value="Nữ"
           checked={formik.values.gender === "Nữ"}
           onChange={handleRadioChange}
+          className="nu"
         />
         <label htmlFor="nu">Nữ</label>
       </form>

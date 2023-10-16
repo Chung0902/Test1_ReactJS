@@ -6,11 +6,97 @@
 .father2{
     width: 450px;
     height: 520px;
-    background-color: aqua;
+    background-color: rgb(26, 228, 225);
     margin-left: 350px;
 }
 .father2 h1{
     padding: 20px;
     padding-left: 150px;
+    margin-bottom: -20px;
+    margin-top: -20px;
 }
+label .input1 {
+    width: 300px;
+    height: 30px;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+label{
+    margin-left: 30px;
+    font-weight: bold;
+}
+label .age{
+    margin-left: 47px;
+    margin-bottom: 10px;
+}
+label .email{
+    margin-left: 40px;
+}
+label .address{
+    margin-left: 30px;
+}
+label .password{
+    margin-left: 10px;
+}
+.captcha2{
+    padding-left: 25px;
+}
+.dangky{
+    margin-left: 180px;
+}
+label p{
+    font-size: 10px;
+    color: red;
+    margin-bottom: -50px;
+}
+.nam{
+    margin-left: 30px;
+    margin-right: -20px;
+}
+.nu{
+    margin-left: 30px;
+    margin-right: -20px;
+}
+/* responsive */
+/* tablet */
+@media only screen and (max-width: 769px) {
+    .father2{
+        margin-left: 30px;
+    }
+  }
 
+  /* mobile */
+  @media only screen and (max-width: 426px) {
+    label .input1 {
+        width: 250px;
+        height: 30px;
+    }
+    .father2{
+        width: 400px;
+        height: 520px;
+        margin-left: 10px;
+        margin-bottom: 100px;
+    }
+    .captcha2{
+        padding-left: 5px;
+    }
+    .dangky{
+        margin-left: 150px;
+    }
+
+  }
+  
+  @media only screen and (max-width: 376px) {
+    .captcha2{
+        padding-left: 30px;
+    }
+    .father2{
+        margin-left: -10px;
+    }
+  }
+
+  @media only screen and (max-width: 321px) {
+    .captcha2{
+        padding-left: 55px;
+    }
+  }
