@@ -42,7 +42,7 @@ const UserEdit = () => {
   const handleFormSubmit = (e) => {
     e.preventDefault();
     // Cập nhật thông tin người dùng ở đây, ví dụ, gửi dữ liệu lên API hoặc cơ sở dữ liệu.
-    // Sau khi cập nhật thành công, bạn có thể điều hướng người dùng đến trang `UserList` hoặc thực hiện các hành động khác.
+    // Sau khi cập nhật thành công,có thể điều hướng người dùng đến trang `UserList` hoặc thực hiện các hành động khác.
   };
 
   if (!user) {
@@ -51,7 +51,7 @@ const UserEdit = () => {
 
   return (
     <div>
-      <h2>Sửa thông tin người dùng</h2>
+      <h4>Sửa thông tin người dùng</h4>
       <form onSubmit={handleFormSubmit}>
         <div>
           <label>ID:</label>
