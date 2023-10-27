@@ -7,6 +7,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Register from "./pages/Register";
 import UserList from "./pages/UserList ";
 import UserEdit from "./pages/UserEdit";
+import LoginGoogleOAuth from "./pages/LoginGoogleOAuth";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/userlist" element={<UserList/>} />
         <Route path="/useredit/:id" element={<UserEdit />} />
+        <Route path="/logingoogleoauth" element={<LoginGoogleOAuth/>} />
       </Routes>
     </BrowserRouter>
   );
