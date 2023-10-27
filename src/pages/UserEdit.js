@@ -50,7 +50,7 @@ const UserEdit = () => {
   }
 
   return (
-    <div>
+    <div className="userEdit">
       <h4>Sửa thông tin người dùng</h4>
       <form onSubmit={handleFormSubmit}>
         <div>
