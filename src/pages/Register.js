@@ -37,19 +37,22 @@ const Register = () => {
         .min(5, "Không được nhập ít hơn 5 ký tự")
         .required("Vui lòng nhập mật khẩu"),
     }),
-    onSubmit: (values) => {
-      //Lưu dữ liệu trên local dưới dạng mảng object
+    onSubmit: (values, { resetForm }) => {
+      // Lưu dữ liệu trên local dưới dạng mảng object
       const users = JSON.parse(localStorage.getItem("users")) || [];
-
+    
       // Thêm đối tượng mới vào mảng
-      users.push({id: idCounter, ...values});
-
+      users.push({ id: idCounter, ...values });
+    
       // Lưu thông tin đăng ký vào localStorage
       localStorage.setItem("users", JSON.stringify(users));
-
+    
       // Tăng giá trị ID để chuẩn bị cho lần đăng ký tiếp theo
       setIdCounter(idCounter + 1);
-
+    
+      // Đặt lại giá trị của các trường trong formik về trạng thái mặc định
+      resetForm();
+    
       console.log(values);
     },
   });
