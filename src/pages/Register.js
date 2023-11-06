@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 import Radio from "../components/Radio";
 import { useFormik } from "formik";
@@ -6,6 +6,8 @@ import * as Yup from "yup";
 import ReCaptcha from "../components/ReCaptcha";
 
 const Register = () => {
+  const [idCounter, setIdCounter] = useState(1); // Sử dụng useState để lưu giá trị ID và cập nhật nó
+
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -13,7 +15,7 @@ const Register = () => {
       email: "",
       address: "",
       password: "",
-      gender: "Nam" // Mặc định "Nam"
+      gender: "Nam", // Mặc định "Nam"
     },
     validationSchema: Yup.object({
       name: Yup.string()
@@ -35,13 +37,27 @@ const Register = () => {
         .min(5, "Không được nhập ít hơn 5 ký tự")
         .required("Vui lòng nhập mật khẩu"),
     }),
-    onSubmit: (values) =>{
-      console.log(values)
+    onSubmit: (values) => {
+      //Lưu dữ liệu trên local dưới dạng mảng object
+      const users = JSON.parse(localStorage.getItem("users")) || [];
+
+      // Thêm đối tượng mới vào mảng
+      users.push({id: idCounter, ...values});
+
+      // Lưu thông tin đăng ký vào localStorage
+      localStorage.setItem("users", JSON.stringify(users));
+
+      // Tăng giá trị ID để chuẩn bị cho lần đăng ký tiếp theo
+      setIdCounter(idCounter + 1);
+
+      console.log(values);
     },
   });
+
   const handleGenderChange = (selectedGender) => {
     formik.setFieldValue("gender", selectedGender);
   };
+
   return (
     <div className="container2">
       <form onSubmit={formik.handleSubmit} className="father2">
@@ -124,7 +140,11 @@ const Register = () => {
         <br />
         <ReCaptcha />
         <br />
-        <button type="submit" className="btn btn-primary dangky" value="Submit Form">
+        <button
+          type="submit"
+          className="btn btn-primary dangky"
+          value="Submit Form"
+        >
           Đăng ký
         </button>
       </form>

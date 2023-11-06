@@ -1,9 +1,22 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { userlist } from "../data/userlist";
 import DeleteButton from "../components/DeleteButton ";
 import { NavLink } from "react-router-dom";
 
 const UserList = () => {
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    const storedUsers = JSON.parse(localStorage.getItem("users")) || [];
+    setUsers(storedUsers);
+  }, []);
+
+  const handleDeleteUser = (userId) => {
+    const updatedUsers = users.filter((user) => user.id !== userId);
+    setUsers(updatedUsers);
+    localStorage.setItem("users", JSON.stringify(updatedUsers));
+  };
+
   return (
     <div>
       <h2>Danh sách người dùng</h2>
@@ -21,7 +34,7 @@ const UserList = () => {
           </tr>
         </thead>
         <tbody>
-          {userlist.map((user) => (
+          {users.map((user) => (
             <tr key={user.id}>
               <td>{user.id}</td>
               <td>{user.name}</td>
@@ -37,7 +50,7 @@ const UserList = () => {
                   </button>
                 </NavLink>
 
-                <DeleteButton />
+                <DeleteButton onDeleteClick={() => handleDeleteUser(user.id)}/>
               </td>
             </tr>
           ))}

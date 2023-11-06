@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-import { userlist } from "../data/userlist";
 import "../styles/useredit.css";
-
 
 const UserEdit = () => {
   const { id } = useParams();
-  const [user, setUser] = useState(null);
-  const [formData, setFormData] = useState({
+  const [editedUser, setEditedUser] = useState({
+    id: "",
     name: "",
     age: "",
     email: "",
@@ -16,53 +14,66 @@ const UserEdit = () => {
     gender: "",
   });
 
+  const [userList, setUserList] = useState([]);
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+  const [isDataChanged, setIsDataChanged] = useState(false);
+  
+
   useEffect(() => {
-    const selectedUser = userlist.find((user) => user.id === parseInt(id, 10));
-    if (selectedUser) {
-      setUser(selectedUser);
-      setFormData({
-        name: selectedUser.name,
-        age: selectedUser.age,
-        email: selectedUser.email,
-        address: selectedUser.address,
-        password: selectedUser.password,
-        gender: selectedUser.gender,
-      });
-    }
+    const user = JSON.parse(localStorage.getItem("users"));
+    setUserList(user);
+
+    const selectedUser = user.find((user) => user.id === parseInt(id));
+    setEditedUser(selectedUser);
   }, [id]);
 
+  const showSuccessAlert = () => {
+    // Hiển thị thông báo cập nhật thành công bằng `window.confirm`
+    const confirmed = window.confirm("Cập nhật thành công! Bấm OK để chuyển đến trang userlist.");
+    if (confirmed) {
+      // Người dùng đã bấm OK, chuyển hướng về trang "userlist"
+      window.location.href = "/userlist";
+    }
+  };
+  
+  const handleSave = () => {
+    // Kiểm tra xem có sự thay đổi nào đã xảy ra
+    if (isDataChanged) {
+      // Cập nhật thông tin người dùng trong localStorage hoặc gửi lên máy chủ
+      const updatedUsers = userList.map((user) => {
+        if (user.id === editedUser.id) {
+          return editedUser;
+        }
+        return user;
+      });
+  
+      localStorage.setItem('users', JSON.stringify(updatedUsers));
+  
+      // Hiển thị thông báo cập nhật thành công bằng `showSuccessAlert`
+      showSuccessAlert();
+    }
+  };
+  
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
+    setEditedUser({ ...editedUser, [name]: value });
+    setIsDataChanged(true);
   };
-
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-    // Cập nhật thông tin người dùng ở đây, ví dụ, gửi dữ liệu lên API hoặc cơ sở dữ liệu.
-    // Sau khi cập nhật thành công,có thể điều hướng người dùng đến trang `UserList` hoặc thực hiện các hành động khác.
-  };
-
-  if (!user) {
-    return <div>Loading...</div>;
-  }
 
   return (
     <div className="userEdit">
       <h4>Sửa thông tin người dùng</h4>
-      <form onSubmit={handleFormSubmit}>
+      <form>
         <div>
           <label>ID:</label>
-          <input type="text" value={user.id} readOnly />
+          <input type="text" name="id" value={editedUser.id} readOnly />
         </div>
         <div>
           <label>Name:</label>
           <input
             type="text"
             name="name"
-            value={formData.name}
+            value={editedUser.name}
             onChange={handleInputChange}
           />
         </div>
@@ -71,7 +82,7 @@ const UserEdit = () => {
           <input
             type="text"
             name="age"
-            value={formData.age}
+            value={editedUser.age}
             onChange={handleInputChange}
           />
         </div>
@@ -80,7 +91,7 @@ const UserEdit = () => {
           <input
             type="text"
             name="email"
-            value={formData.email}
+            value={editedUser.email}
             onChange={handleInputChange}
           />
         </div>
@@ -89,7 +100,7 @@ const UserEdit = () => {
           <input
             type="text"
             name="address"
-            value={formData.address}
+            value={editedUser.address}
             onChange={handleInputChange}
           />
         </div>
@@ -98,7 +109,7 @@ const UserEdit = () => {
           <input
             type="password"
             name="password"
-            value={formData.password}
+            value={editedUser.password}
             onChange={handleInputChange}
           />
         </div>
@@ -107,11 +118,13 @@ const UserEdit = () => {
           <input
             type="text"
             name="gender"
-            value={formData.gender}
+            value={editedUser.gender}
             onChange={handleInputChange}
           />
         </div>
-        <button type="submit">Lưu</button>
+        <button type="button" onClick={handleSave}>
+          Lưu
+        </button>
         <Link to="/userlist">
           <button type="button">Hủy</button>
         </Link>

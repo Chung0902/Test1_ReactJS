@@ -17,7 +17,7 @@ function App() {
         <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/userlist" element={<UserList/>} />
-        <Route path="/useredit/:id" element={<UserEdit />} />
+        <Route path="/useredit/:id" element={<UserEdit/>} />
         <Route path="/logingoogleoauth" element={<LoginGoogleOAuth/>} />
         <Route path="/uploadfile" element={<UploadFile/>} />
       </Routes>
