@@ -1,0 +1,48 @@
+.parent {
+    /* display: flex; */
+    align-items: center;
+    justify-content: center;
+    margin: 20px;
+  }
+  
+  .parent button {
+    font-size: 16px;
+    margin: 5px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  .button_p{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px;
+  }
+  
+  .parent button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Style for the "Giảm" button */
+  .parent button:nth-child(1) {
+    background-color: #dc3545;
+  }
+  
+  /* Style for the "Tăng" button */
+  .parent button:nth-child(2) {
+    background-color: #28a745;
+  }
+  
+  .parent label {
+    font-size: 18px;
+    margin: 10px;
+    margin-left: 530px;
+  }
+  .but_ch{
+    margin-left: 460px;
+  }
+  

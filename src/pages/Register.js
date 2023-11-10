@@ -7,6 +7,7 @@ import ReCaptcha from "../components/ReCaptcha";
 
 const Register = () => {
   const [idCounter, setIdCounter] = useState(1); // Sử dụng useState để lưu giá trị ID và cập nhật nó
+  const [isRecaptchaVerified, setRecaptchaVerified] = useState(false);
 
   const formik = useFormik({
     initialValues: {
@@ -16,6 +17,7 @@ const Register = () => {
       address: "",
       password: "",
       gender: "Nam", // Mặc định "Nam"
+      googleVerified: false, // Thêm trường này để lưu trạng thái xác minh ReCAPTCHA
     },
     validationSchema: Yup.object({
       name: Yup.string()
@@ -37,22 +39,32 @@ const Register = () => {
         .min(5, "Không được nhập ít hơn 5 ký tự")
         .required("Vui lòng nhập mật khẩu"),
     }),
+
     onSubmit: (values, { resetForm }) => {
       // Lưu dữ liệu trên local dưới dạng mảng object
       const users = JSON.parse(localStorage.getItem("users")) || [];
-    
+
       // Thêm đối tượng mới vào mảng
       users.push({ id: idCounter, ...values });
-    
+
       // Lưu thông tin đăng ký vào localStorage
       localStorage.setItem("users", JSON.stringify(users));
-    
+
       // Tăng giá trị ID để chuẩn bị cho lần đăng ký tiếp theo
       setIdCounter(idCounter + 1);
-    
+
       // Đặt lại giá trị của các trường trong formik về trạng thái mặc định
       resetForm();
-    
+
+      // Đặt giới tính trở về giá trị mặc định là "Nam"
+      formik.setFieldValue("gender", "Nam");
+
+      // Đặt trạng thái xác nhận bằng ReCAPTCHA thành true
+      formik.setFieldValue("googleVerified", true);
+
+      // Đặt trạng thái ReCAPTCHA về chưa được chọn (false)
+      setRecaptchaVerified(false);
+
       console.log(values);
     },
   });
