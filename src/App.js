@@ -12,6 +12,7 @@ import LoginGoogleOAuth from "./pages/LoginGoogleOAuth";
 import UploadFile from "./components/UploadFile";
 import ParentComponent from "./components/ParentComponent";
 import Parent1 from "./components/Parent1";
+import Parent2 from "./components/Parent2";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path="/uploadfile" element={<UploadFile/>} />
         <Route path="/parentComponent" element={<ParentComponent/>} />
         <Route path="/parent1" element={<Parent1/>} />
+        <Route path="/parent2" element={<Parent2/>} />
       </Routes>
     </BrowserRouter>
   );
