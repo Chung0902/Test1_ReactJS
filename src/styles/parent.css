@@ -45,5 +45,13 @@
   .parent .but_ch{
     margin-left: 520px;
   }
+  .parent .childcontext{
+    margin-left: 500px;
+    font-weight: bold;
+  }
+  .parent .but_giam{
+    margin-right: -450px;
+    margin-left: 450px;
+  }
 
   
