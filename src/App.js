@@ -16,6 +16,7 @@ import Parent1 from "./components/Parent1";
 import Parent2 from "./components/Parent2";
 import MyProvider from "./components/MyProvider";
 import ParentContext from "./components/ParentContext";
+import ParentContextAPI from "./components/ParentContextAPI";
 
 function App() {
   return (
@@ -35,6 +36,14 @@ function App() {
           element={
             <MyProvider>
               <ParentContext />
+            </MyProvider>
+          }
+        />
+        <Route
+          path="/parentcontextAPI"
+          element={
+            <MyProvider>
+              <ParentContextAPI/>
             </MyProvider>
           }
         />

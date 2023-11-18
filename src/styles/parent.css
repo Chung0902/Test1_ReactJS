@@ -9,7 +9,7 @@
     font-size: 16px;
     margin: 5px;
     padding: 10px 20px;
-    background-color: #007bff;
+    background-color: #dc3545;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -23,9 +23,9 @@
     margin: 20px;
   }
   
-  .parent button:hover {
+  /* .parent button:hover {
     background-color: #0056b3;
-  }
+  } */
   
   /* Style for the "Giảm" button */
   .parent button:nth-child(1) {
@@ -51,7 +51,11 @@
   }
   .parent .but_giam{
     margin-right: -450px;
-    margin-left: 450px;
+    margin-left: 400px;
+  }
+  .parent .bt_giam{
+    margin-right: -500px;
+    margin-top: 50px;
   }
 
   
