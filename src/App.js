@@ -5,7 +5,7 @@ import "./styles/register.css";
 import "./styles/userlist.css";
 import "./styles/parent.css";
 import Login from "./pages/Login";
-import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Register from "./pages/Register";
 import UserList from "./pages/UserList ";
 import UserEdit from "./pages/UserEdit";
@@ -17,9 +17,14 @@ import Parent2 from "./components/Parent2";
 import MyProvider from "./components/MyProvider";
 import ParentContext from "./components/ParentContext";
 import ParentContextAPI from "./components/ParentContextAPI";
+import store from './components/store';
+import { Provider } from "react-redux";
+import ParentComponent1 from "./components/ParentComponent1";
+
 
 function App() {
   return (
+    <Provider store={store}>
     <Router>
       <Routes>
         <Route path="/" element={<Login />} />
@@ -31,6 +36,7 @@ function App() {
         <Route path="/parentComponent" element={<ParentComponent />} />
         <Route path="/parent1" element={<Parent1 />} />
         <Route path="/parent2" element={<Parent2 />} />
+        <Route path="/parentComponent1" element={<ParentComponent1 />} />
         <Route
           path="/parentcontext"
           element={
@@ -43,12 +49,13 @@ function App() {
           path="/parentcontextAPI"
           element={
             <MyProvider>
-              <ParentContextAPI/>
+              <ParentContextAPI />
             </MyProvider>
           }
         />
       </Routes>
     </Router>
+    </Provider>
   );
 }
 

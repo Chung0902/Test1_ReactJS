@@ -57,5 +57,36 @@
     margin-right: -500px;
     margin-top: 50px;
   }
+  .parent-component {
+    padding: 20px;
+    border: 1px solid #ccc;
+    margin: 20px;
+  }
+  
+  .label {
+    font-size: 18px;
+    margin-bottom: 10px;
+    margin-left: 500px;
+    font-weight: bold;
+  }
+  .child-component {
+    margin-top: 20px;
+    margin-left: 450px;
+  }
+  
+  .child-component .button1 {
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-right: 10px;
+    background-color: #dc3545;
+  }
+  .child-component .button2 {
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-right: 10px;
+    background-color: green;
+  }
 
   
