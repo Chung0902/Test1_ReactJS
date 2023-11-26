@@ -20,7 +20,7 @@ import ParentContextAPI from "./components/ParentContextAPI";
 import store from './components/store';
 import { Provider } from "react-redux";
 import ParentComponent1 from "./components/ParentComponent1";
-
+import ParentComponent2 from "./components/ParentComponent2";
 
 function App() {
   return (
@@ -37,6 +37,7 @@ function App() {
         <Route path="/parent1" element={<Parent1 />} />
         <Route path="/parent2" element={<Parent2 />} />
         <Route path="/parentComponent1" element={<ParentComponent1 />} />
+        <Route path="/parentComponent2" element={<ParentComponent2 />} />
         <Route
           path="/parentcontext"
           element={
