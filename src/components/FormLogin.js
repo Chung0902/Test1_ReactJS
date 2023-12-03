@@ -1,9 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { loginSuccess } from "../actions/authActions";
 import ReCaptcha from "./ReCaptcha";
-
+import { useNavigate } from "react-router-dom";
 
 const FormLogin = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const { isAuthenticated } = useSelector((state) => state.auth);
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -16,7 +23,6 @@ const FormLogin = () => {
     password: "",
   });
 
-  const [loginSuccess, setLoginSuccess] = useState(false);
 
   const handleEmailBlur = () => {
     if (formData.email.trim() === "") {
@@ -37,31 +43,39 @@ const FormLogin = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (formData.email.trim() === "") {
-      setErrors({ ...errors, email: "Vui lòng nhập email" });
-      return;
-    }
-
-    if (formData.password.trim() === "") {
-      setErrors({ ...errors, password: "Vui lòng nhập mật khẩu" });
+    if (formData.email.trim() === "" || formData.password.trim() === "") {
+      // Xử lý lỗi nếu cần
       return;
     }
 
     if (recaptchaValue === null) {
+      // Xử lý lỗi nếu cần
       return;
     }
 
-    // Xử lý đăng nhập hoặc gửi dữ liệu lên máy chủ
-    // Ở đây, thay vì làm thực tế, chúng ta giả định rằng đăng nhập thành công.
-    setLoginSuccess(true);
+    // Simulate a successful login
+    dispatch(loginSuccess(formData));
+
+
+    // // Chuyển hướng đến trang Dashboard
+    // navigate("/dashboard");
+    if (isAuthenticated) {
+      localStorage.setItem('userEmail', formData.email);
+      localStorage.setItem('userPassword', formData.password);
+      // Chuyển hướng đến trang Dashboard khi đăng nhập thành công
+      navigate("/dashboard");
+    } else {
+      // Xử lý trường hợp đăng nhập thất bại (nếu cần)
+    }
   };
+
   useEffect(() => {
-    if (loginSuccess) {
+    if (isAuthenticated) {
       console.log("Đăng nhập thành công");
       console.log("Email:", formData.email);
       console.log("Password:", formData.password);
     }
-  }, [loginSuccess, formData.email, formData.password]);
+  },[isAuthenticated, formData.email, formData.password]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -80,6 +94,22 @@ const FormLogin = () => {
       setIsHuman(false);
     }
   };
+
+  const handleLogin = () => {
+    // Simulate fetching user credentials from local storage
+    const storedUsers = JSON.parse(localStorage.getItem('users')) || [];
+    const user = storedUsers.find(u => u.email === formData.email && u.password === formData.password);
+
+    if (user) {
+      dispatch(loginSuccess(user));
+      localStorage.setItem('userEmail', user.email);
+      localStorage.setItem('userPassword', user.password);
+      navigate('/dashboard');
+    } else {
+      alert('Sai thông tin, vui lòng nhập lại...');
+    }
+  };
+
 
   return (
     <div className="App">
@@ -115,9 +145,11 @@ const FormLogin = () => {
           disabled={
             formData.email.trim() === "" ||
             formData.password.trim() === "" ||
-            recaptchaValue === null
+            recaptchaValue === null ||
+            isAuthenticated
           }
           className="btn btn-primary"
+          onClick={handleLogin}
         >
           Đăng nhập
         </button>

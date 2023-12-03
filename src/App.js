@@ -17,10 +17,11 @@ import Parent2 from "./components/Parent2";
 import MyProvider from "./components/MyProvider";
 import ParentContext from "./components/ParentContext";
 import ParentContextAPI from "./components/ParentContextAPI";
-import store from './components/store';
 import { Provider } from "react-redux";
 import ParentComponent1 from "./components/ParentComponent1";
 import ParentComponent2 from "./components/ParentComponent2";
+import DashboardPage from './pages/DashboardPage';
+import store from '../src/store';
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
         <Route path="/parent2" element={<Parent2 />} />
         <Route path="/parentComponent1" element={<ParentComponent1 />} />
         <Route path="/parentComponent2" element={<ParentComponent2 />} />
+        <Route path="/dashboard" element={<DashboardPage />} />
         <Route
           path="/parentcontext"
           element={
