@@ -17,17 +17,20 @@ import Parent2 from "./components/Parent2";
 import MyProvider from "./components/MyProvider";
 import ParentContext from "./components/ParentContext";
 import ParentContextAPI from "./components/ParentContextAPI";
-import { Provider } from "react-redux";
 import ParentComponent1 from "./components/ParentComponent1";
 import ParentComponent2 from "./components/ParentComponent2";
 import DashboardPage from './pages/DashboardPage';
 import store from '../src/store';
+import DashboardContextAPI from "./pages/DashboardContextAPI";
+import { AuthProvider } from './context/AuthContext';
+import { Provider as ReduxProvider } from 'react-redux';
 
 function App() {
   return (
-    <Provider store={store}>
+    <ReduxProvider store={store}>
     <Router>
-      <Routes>
+      <AuthProvider>
+        <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/userlist" element={<UserList />} />
@@ -40,6 +43,7 @@ function App() {
         <Route path="/parentComponent1" element={<ParentComponent1 />} />
         <Route path="/parentComponent2" element={<ParentComponent2 />} />
         <Route path="/dashboard" element={<DashboardPage />} />
+        <Route path="/dashboardcontextAPI" element={<DashboardContextAPI />}/>
         <Route
           path="/parentcontext"
           element={
@@ -56,9 +60,10 @@ function App() {
             </MyProvider>
           }
         />
-      </Routes>
+        </Routes>
+      </AuthProvider>
     </Router>
-    </Provider>
+  </ReduxProvider>
   );
 }
 
