@@ -96,20 +96,24 @@ const FormLogin = () => {
   };
 
   const handleLogin = () => {
-    // Simulate fetching user credentials from local storage
+    // Mô phỏng thông tin tìm nạp người dùng từ lưu trữ cục bộ
     const storedUsers = JSON.parse(localStorage.getItem('users')) || [];
     const user = storedUsers.find(u => u.email === formData.email && u.password === formData.password);
-
+  
     if (user) {
       dispatch(loginSuccess(user));
       localStorage.setItem('userEmail', user.email);
       localStorage.setItem('userPassword', user.password);
+  
+      // Lưu trạng thái đăng nhập vào localStorage khi đăng nhập thành công
+      localStorage.setItem('isAuthenticated', true);
+  
       navigate('/dashboard');
     } else {
       alert('Sai thông tin, vui lòng nhập lại...');
     }
   };
-
+  
 
   return (
     <div className="App">
