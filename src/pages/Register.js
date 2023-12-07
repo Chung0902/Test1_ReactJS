@@ -4,65 +4,65 @@ import Radio from "../components/Radio";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import ReCaptcha from "../components/ReCaptcha";
+import { registerUser } from '../actions/authActions';
+import { useDispatch } from 'react-redux';
 
 const Register = () => {
-  const [idCounter, setIdCounter] = useState(1); // Sử dụng useState để lưu giá trị ID và cập nhật nó
+  const dispatch = useDispatch();
+  const [idCounter, setIdCounter] = useState(1);
   const [isRecaptchaVerified, setRecaptchaVerified] = useState(false);
 
   const formik = useFormik({
     initialValues: {
-      name: "",
-      age: "",
-      email: "",
-      address: "",
-      password: "",
-      gender: "Nam", // Mặc định "Nam"
-      googleVerified: false, // Thêm trường này để lưu trạng thái xác minh ReCAPTCHA
+      name: '',
+      age: '',
+      email: '',
+      address: '',
+      password: '',
+      gender: 'Nam',
+      googleVerified: false,
     },
     validationSchema: Yup.object({
       name: Yup.string()
-        .min(5, "Không được nhập ít hơn 5 ký tự")
-        .max(25, "Không nhập quá 25 ký tự")
-        .required("Vui lòng nhập họ và tên"),
+        .min(5, 'Không được ít hơn 5 ký tự')
+        .max(25, 'Không được nhiều hơn 25 ký tự')
+        .required('Vui lòng nhập họ và tên'),
       age: Yup.number()
-        .required("Vui lòng nhập tuổi")
-        .positive("Tuổi phải là số dương")
-        .integer("Tuổi phải là số nguyên"),
+        .required('Vui lòng nhập tuổi')
+        .positive('Tuổi phải là số dương')
+        .integer('Tuổi phải là số nguyên'),
       email: Yup.string()
-        .email("Email không đúng định dạng")
-        .required("Vui lòng nhập email"),
+        .email('Email không đúng định dạng')
+        .required('Vui lòng nhập email'),
       address: Yup.string()
-        .min(5, "Không được nhập ít hơn 5 ký tự")
-        .max(20, "Không nhập quá 20 ký tự")
-        .required("Vui lòng nhập địa chỉ"),
+        .min(5, 'Không được ít hơn 5 ký tự')
+        .max(20, 'Không được nhiều hơn 20 ký tự')
+        .required('Vui lòng nhập địa chỉ'),
       password: Yup.string()
-        .min(5, "Không được nhập ít hơn 5 ký tự")
-        .required("Vui lòng nhập mật khẩu"),
+        .min(5, 'Không được ít hơn 5 ký tự')
+        .required('Vui lòng nhập mật khẩu'),
     }),
-
     onSubmit: (values, { resetForm }) => {
-      // Lưu dữ liệu trên local dưới dạng mảng object
-      const users = JSON.parse(localStorage.getItem("users")) || [];
+      // Lấy danh sách người dùng từ local storage
+      const users = JSON.parse(localStorage.getItem('users')) || [];
 
-      // Thêm đối tượng mới vào mảng
-      users.push({ id: idCounter, ...values });
-
-      // Lưu thông tin đăng ký vào localStorage
-      localStorage.setItem("users", JSON.stringify(users));
-
-      // Tăng giá trị ID để chuẩn bị cho lần đăng ký tiếp theo
+      // Tăng idCounter và sử dụng nó làm id cho người dùng mới
+      const newUser = { id: idCounter, ...values };
       setIdCounter(idCounter + 1);
 
-      // Đặt lại giá trị của các trường trong formik về trạng thái mặc định
+      // Thêm người dùng mới vào danh sách
+      users.push(newUser);
+
+      // Lưu danh sách người dùng mới vào local storage
+      localStorage.setItem('users', JSON.stringify(users));
+
+      // Gửi action để cập nhật trạng thái Redux
+      dispatch(registerUser(users, newUser));
+
+      // Cập nhật các giá trị khác
       resetForm();
-
-      // Đặt giới tính trở về giá trị mặc định là "Nam"
-      formik.setFieldValue("gender", "Nam");
-
-      // Đặt trạng thái xác nhận bằng ReCAPTCHA thành true
-      formik.setFieldValue("googleVerified", true);
-
-      // Đặt trạng thái ReCAPTCHA về chưa được chọn (false)
+      formik.setFieldValue('gender', 'Nam');
+      formik.setFieldValue('googleVerified', true);
       setRecaptchaVerified(false);
 
       console.log(values);
@@ -70,7 +70,7 @@ const Register = () => {
   });
 
   const handleGenderChange = (selectedGender) => {
-    formik.setFieldValue("gender", selectedGender);
+    formik.setFieldValue('gender', selectedGender);
   };
 
   return (

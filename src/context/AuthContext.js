@@ -1,5 +1,4 @@
-// AuthContext.js
-import React, { createContext, useContext, useReducer } from 'react';
+import React, { createContext, useContext, useReducer, useEffect } from 'react';
 
 const AuthContext = createContext();
 
@@ -30,12 +29,27 @@ const authReducer = (state, action) => {
 const AuthProvider = ({ children }) => {
   const [state, dispatch] = useReducer(authReducer, initialState);
 
+  useEffect(() => {
+    // Lưu trạng thái đăng nhập vào localStorage khi có thay đổi
+    localStorage.setItem('isAuthenticated', state.isAuthenticated);
+  }, [state.isAuthenticated]);
+
   const loginSuccess = (user) => {
     dispatch({ type: 'LOGIN_SUCCESS', user });
+  
+    // Lưu trạng thái đăng nhập vào localStorage khi đăng nhập thành công
+    localStorage.setItem('isAuthenticated', true);
+    localStorage.setItem('userEmail', user.email);
+    
+    console.log('localStorage after login:', localStorage);
   };
 
   const logout = () => {
     dispatch({ type: 'LOGOUT' });
+
+    // Xóa trạng thái đăng nhập khi người dùng đăng xuất
+    localStorage.removeItem('isAuthenticated');
+    localStorage.removeItem('userEmail');
   };
 
   return (
@@ -53,4 +67,5 @@ const useAuth = () => {
   return context;
 };
 
-export { AuthProvider, useAuth };
+// Xuất AuthProvider cùng với các thứ khác
+export { AuthProvider, useAuth, AuthContext };

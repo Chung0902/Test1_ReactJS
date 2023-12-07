@@ -1,11 +1,12 @@
 import React from "react";
 import chibiImage from "../images/chibi2.png";
 import FormLogin from "../components/FormLogin";
-import LoginContextAPI from "./LoginContextAPI";
-
+import LoginContextAPI from "../components/LoginContextAPI";
+import LayoutFrontend from '../components/layouts/LayoutFrontend';
 
 const Login = () => {
   return (
+    <LayoutFrontend>
     <div className="container1">
       <div className="image">
         <img src={chibiImage} alt="chibi" />
@@ -18,13 +19,14 @@ const Login = () => {
           <FormLogin/>
 
           {/* Login ContextAPI */}
-          {/* <LoginContextAPI/> */}
+          {/* <LoginContextAPI /> */}
         </div>
         <div className="child_1 image_1 table1">
           <img src={chibiImage} alt="chibi" />
         </div>
       </div>
     </div>
+    </LayoutFrontend>
   );
 };
 

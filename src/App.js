@@ -20,10 +20,10 @@ import ParentContextAPI from "./components/ParentContextAPI";
 import ParentComponent1 from "./components/ParentComponent1";
 import ParentComponent2 from "./components/ParentComponent2";
 import store from "../src/store";
-import DashboardContextAPI from "./pages/DashboardContextAPI";
 import { AuthProvider } from "./context/AuthContext";
 import { Provider as ReduxProvider } from "react-redux";
 import DashboardPage from './pages/DashboardPage';
+import DashboardContextAPI from './pages/DashboardContextAPI';
 
 function App() {
   return (
@@ -43,10 +43,7 @@ function App() {
             <Route path="/parentComponent1" element={<ParentComponent1 />} />
             <Route path="/parentComponent2" element={<ParentComponent2 />} />
             <Route path="/dashboard" element={<DashboardPage />} />
-            <Route
-              path="/dashboardcontextAPI"
-              element={<DashboardContextAPI />}
-            />
+            <Route path="/dashboardcontextAPI" element={<DashboardContextAPI />} />
             <Route
               path="/parentcontext"
               element={
