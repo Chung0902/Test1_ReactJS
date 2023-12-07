@@ -1,0 +1,42 @@
+.profile ul {
+  list-style: none;
+  padding: 0;
+}
+
+.profile li {
+  margin-bottom: 15px;
+}
+
+.profile strong {
+  font-weight: bold;
+}
+
+.profile button {
+  background-color: green;
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.profile button:hover {
+  background-color: rgb(12, 170, 12);
+}
+
+/* Layout adjustments */
+.profile .LayoutBackend {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.profile h2 {
+  color: #333;
+  margin-left: 150px;
+}
+.childprofileb{
+  margin-left: 550px;
+}
+.childprofile{
+  margin-left: 500px;
+}

@@ -4,6 +4,7 @@ import "./styles/login.css";
 import "./styles/register.css";
 import "./styles/userlist.css";
 import "./styles/parent.css";
+import "./styles/DashboardPage.css";
 import Login from "./pages/Login";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Register from "./pages/Register";
@@ -24,6 +25,7 @@ import { AuthProvider } from "./context/AuthContext";
 import { Provider as ReduxProvider } from "react-redux";
 import DashboardPage from './pages/DashboardPage';
 import DashboardContextAPI from './pages/DashboardContextAPI';
+import Profile from "./components/Profile";
 
 function App() {
   return (
@@ -44,6 +46,7 @@ function App() {
             <Route path="/parentComponent2" element={<ParentComponent2 />} />
             <Route path="/dashboard" element={<DashboardPage />} />
             <Route path="/dashboardcontextAPI" element={<DashboardContextAPI />} />
+            <Route path="//profile" element={<Profile/>} />
             <Route
               path="/parentcontext"
               element={

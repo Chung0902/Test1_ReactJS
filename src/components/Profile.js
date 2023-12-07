@@ -46,10 +46,11 @@
 
 // export default Profile;
 
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import LayoutBackend from '../components/layouts/LayoutBackend';
-import { registerUser } from '../actions/authActions';
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import LayoutBackend from "../components/layouts/LayoutBackend";
+import { registerUser } from "../actions/authActions";
+import { Link, useNavigate } from "react-router-dom";
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -60,7 +61,7 @@ const Profile = () => {
   // Tự động cập nhật Redux store từ local storage khi component được render
   useEffect(() => {
     // Lấy dữ liệu từ local storage
-    const storedUsers = JSON.parse(localStorage.getItem('users')) || [];
+    const storedUsers = JSON.parse(localStorage.getItem("users")) || [];
 
     // Thực hiện action để cập nhật Redux store
     dispatch(registerUser(storedUsers));
@@ -68,21 +69,36 @@ const Profile = () => {
 
   return (
     <LayoutBackend>
-      <h2>Trang Hồ sơ</h2>
-      <div>
-        {currentUser ? (
-          <ul>
-            <li key={currentUser.id}>
-              <p><strong>Họ và tên:</strong> {currentUser.name}</p>
-              <p><strong>Tuổi:</strong> {currentUser.age}</p>
-              <p><strong>Giới tính:</strong> {currentUser.gender}</p>
-              <p><strong>Email:</strong> {currentUser.email}</p>
-              <p><strong>Địa chỉ:</strong> {currentUser.address}</p>
-            </li>
-          </ul>
-        ) : (
-          <p>Không có thông tin người dùng.</p>
-        )}
+      <div className="profile">
+        <h2>Profile</h2>
+        <div className="childprofile">
+          {currentUser ? (
+            <ul>
+              <li key={currentUser.id}>
+                <p>
+                  <strong>Họ và tên:</strong> {currentUser.name}
+                </p>
+                <p>
+                  <strong>Tuổi:</strong> {currentUser.age}
+                </p>
+                <p>
+                  <strong>Giới tính:</strong> {currentUser.gender}
+                </p>
+                <p>
+                  <strong>Email:</strong> {currentUser.email}
+                </p>
+                <p>
+                  <strong>Địa chỉ:</strong> {currentUser.address}
+                </p>
+              </li>
+            </ul>
+          ) : (
+            <p>Không có thông tin người dùng.</p>
+          )}
+        </div>
+        <Link to="/dashboard">
+          <button className="childprofileb">Trở về</button>
+        </Link>
       </div>
     </LayoutBackend>
   );

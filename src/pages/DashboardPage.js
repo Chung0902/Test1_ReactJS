@@ -1,9 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
 import { logout } from '../actions/authActions';
-import { useNavigate } from 'react-router-dom';
 import LayoutBackend from '../components/layouts/LayoutBackend';
-import Profile from '../components/Profile';
 
 const DashboardPage = () => {
   const dispatch = useDispatch();
@@ -24,17 +23,19 @@ const DashboardPage = () => {
 
   return (
     <LayoutBackend>
-    <div>
-      {isAuthenticated ? (
-        <div>
-          <label>Hello - I am Admin</label>
-          <button onClick={handleLogout}>Đăng xuất</button>
-          <Profile/>
-        </div>
-      ) : (
-        <p>Vui lòng đăng nhập vào hệ thống</p>
-      )}
-    </div>
+      <div>
+        {isAuthenticated ? (
+          <div>
+            <label>Hello - I am Admin</label>
+            <button onClick={handleLogout}>Đăng xuất</button>
+            <Link to="/profile">
+              <button>Profile</button>
+            </Link>
+          </div>
+        ) : (
+          <p>Vui lòng đăng nhập vào hệ thống</p>
+        )}
+      </div>
     </LayoutBackend>
   );
 };
