@@ -26,6 +26,7 @@ import { Provider as ReduxProvider } from "react-redux";
 import DashboardPage from './pages/DashboardPage';
 import DashboardContextAPI from './pages/DashboardContextAPI';
 import Profile from "./components/Profile";
+import NotFoundPage from './components/NotFoundPage';
 
 function App() {
   return (
@@ -46,7 +47,8 @@ function App() {
             <Route path="/parentComponent2" element={<ParentComponent2 />} />
             <Route path="/dashboard" element={<DashboardPage />} />
             <Route path="/dashboardcontextAPI" element={<DashboardContextAPI />} />
-            <Route path="//profile" element={<Profile/>} />
+            <Route path="/profile" element={<Profile/>} />
+            <Route path="*" element={<NotFoundPage/>} />
             <Route
               path="/parentcontext"
               element={
