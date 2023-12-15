@@ -27,6 +27,7 @@ import DashboardPage from './pages/DashboardPage';
 import DashboardContextAPI from './pages/DashboardContextAPI';
 import Profile from "./components/Profile";
 import NotFoundPage from './components/NotFoundPage';
+import ReactBootstrap from './components/ReactBootstrap';
 
 function App() {
   return (
@@ -49,6 +50,7 @@ function App() {
             <Route path="/dashboardcontextAPI" element={<DashboardContextAPI />} />
             <Route path="/profile" element={<Profile/>} />
             <Route path="*" element={<NotFoundPage/>} />
+            <Route path="/reactbootstrap" element={<ReactBootstrap/>} />
             <Route
               path="/parentcontext"
               element={
