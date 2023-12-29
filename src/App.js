@@ -28,6 +28,8 @@ import DashboardContextAPI from './pages/DashboardContextAPI';
 import Profile from "./components/Profile";
 import NotFoundPage from './components/NotFoundPage';
 import ReactBootstrap from './components/ReactBootstrap';
+import CoreUI from "./components/CoreUI";
+import PrimeReact from './components/PrimeReact';
 
 function App() {
   return (
@@ -51,6 +53,8 @@ function App() {
             <Route path="/profile" element={<Profile/>} />
             <Route path="*" element={<NotFoundPage/>} />
             <Route path="/reactbootstrap" element={<ReactBootstrap/>} />
+            <Route path="/primereact" element={<PrimeReact/>} />
+            <Route path="/coreui" element={<CoreUI/>} />
             <Route
               path="/parentcontext"
               element={

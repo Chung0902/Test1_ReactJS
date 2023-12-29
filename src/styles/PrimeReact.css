@@ -1,0 +1,39 @@
+:root {
+    --primary-color: #3498db;
+    --secondary-color: #2ecc71;
+    --text-color: #333;
+  }
+  
+  h1 {
+    color: var(--primary-color);
+    text-align: center;
+  }
+  
+  .ButtonClass {
+    background-color: var(--secondary-color);
+    color: white;
+  }
+  
+  .InputTextClass {
+    border: 1px solid var(--primary-color);
+  }
+  .p-datatable {
+    width: 100%;
+    border: 1px solid var(--primary-color);
+    font-size: 14px;
+  }
+  .p-column {
+    text-align: center;
+    font-weight: bold;
+    color: var(--primary-color);
+  }
+  .p-datatable .p-highlight:hover {
+    background-color: var(--secondary-color);
+    color: white;
+  }
+  .p-datatable .p-datatable-striped .p-datatable-row {
+    background-color: #f5f5f5;
+  }
+
+
+  
