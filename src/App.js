@@ -30,6 +30,7 @@ import NotFoundPage from './components/NotFoundPage';
 import ReactBootstrap from './components/ReactBootstrap';
 import CoreUI from "./components/CoreUI";
 import PrimeReact from './components/PrimeReact';
+import MaterialUI from "./components/MaterialUI";
 
 function App() {
   return (
@@ -55,6 +56,7 @@ function App() {
             <Route path="/reactbootstrap" element={<ReactBootstrap/>} />
             <Route path="/primereact" element={<PrimeReact/>} />
             <Route path="/coreui" element={<CoreUI/>} />
+            <Route path="/materialui" element={<MaterialUI/>} />
             <Route
               path="/parentcontext"
               element={
