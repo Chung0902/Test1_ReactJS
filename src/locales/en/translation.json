@@ -1,3 +1,10 @@
 {
-  "label": "Hello, this is in English."
+  "label": "Hello, this is in English.",
+  "login_title": "Login",
+  "login_description": "Sign in to your account",
+  "login_email_label": "Email",
+  "login_password_label": "Password",
+  "login_button": "Login",
+  "login_register_message": "Register if you don't have an account",
+  "recaptcha_language": "en"
 }

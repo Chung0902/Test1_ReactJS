@@ -1,3 +1,10 @@
 {
-  "label": "Xin chào, đây là tiếng Việt."
+  "label": "Xin chào, đây là tiếng Việt.",
+  "login_title": "Đăng nhập",
+  "login_description": "Đăng nhập tài khoản của bạn",
+  "login_email_label": "Email",
+  "login_password_label": "Mật khẩu",
+  "login_button": "Đăng nhập",
+  "login_register_message": "Đăng ký nếu chưa có tài khoản",
+  "recaptcha_language": "vi"
 }
