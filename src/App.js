@@ -32,6 +32,8 @@ import CoreUI from "./components/CoreUI";
 import PrimeReact from './components/PrimeReact';
 import MaterialUI from "./components/MaterialUI";
 import MainPage from "./components/MainPage";
+import DemoCoreUI from "./components/DemoCoreUI";
+
 
 function App() {
   return (
@@ -59,6 +61,7 @@ function App() {
             <Route path="/coreui" element={<CoreUI/>} />
             <Route path="/materialui" element={<MaterialUI/>} />
             <Route path="/mainpage" element={<MainPage/>} />
+            <Route path="/democoreui" element={<DemoCoreUI/>} />
             <Route
               path="/parentcontext"
               element={

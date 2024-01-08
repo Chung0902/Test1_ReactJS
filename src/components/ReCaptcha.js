@@ -41,7 +41,7 @@ const ReCaptcha = ({ handleRecaptchaChange }) => {
   return (
     <div className="captcha captcha2">
       <ReCAPTCHA
-        key={t("recaptcha_language")}
+        key={t("recaptcha_language")} //Thêm khóa vào để thay đổi đa ngôn ngữ 
         sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
         onChange={onRecaptchaChange}
         hl={t("recaptcha_language")}
