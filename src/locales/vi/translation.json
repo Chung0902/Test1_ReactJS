@@ -6,5 +6,16 @@
   "login_password_label": "Mật khẩu",
   "login_button": "Đăng nhập",
   "login_register_message": "Đăng ký nếu chưa có tài khoản",
-  "recaptcha_language": "vi"
+  "recaptcha_language": "vi",
+
+  "popupB": "Popup B",
+  "submit": "Tải lên",
+  "closepopup": "Đóng Popup",
+
+  "pageA": "Trang A",
+  "SelectedImage": "Hình ảnh được tải lên:",
+  "OpenPopup": "Mở Popup",
+
+  "chooseFile": "Chọn tệp",
+  "noFileChosen": "Không có tệp được chọn"
 }

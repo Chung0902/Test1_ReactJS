@@ -6,5 +6,16 @@
   "login_password_label": "Password",
   "login_button": "Login",
   "login_register_message": "Register if you don't have an account",
-  "recaptcha_language": "en"
+  "recaptcha_language": "en",
+
+  "popupB": "Popup B",
+  "submit": "Submit",
+  "closepopup": "Close Popup",
+
+  "pageA": "Page A",
+  "SelectedImage": "Selected Image:",
+  "OpenPopup": "Open Popup",
+
+  "chooseFile": "Choose File",
+  "noFileChosen": "No File Chosen"
 }
