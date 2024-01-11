@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Helmet } from 'react-helmet';
 import {
   CButton,
   CForm,
@@ -36,6 +37,9 @@ const CoreUI = () => {
 
   return (
     <div className="coreui-demo-component">
+      <Helmet>
+        <title>Page DemoCoreUI</title>
+      </Helmet>
       <h2>CoreUI Demo Component</h2>
 
       {/* Button */}

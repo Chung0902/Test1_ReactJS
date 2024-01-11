@@ -33,6 +33,7 @@ import PrimeReact from './components/PrimeReact';
 import MaterialUI from "./components/MaterialUI";
 import MainPage from "./components/MainPage";
 import DemoCoreUI from "./components/DemoCoreUI";
+import ImageDisplay from './components/ImageDisplay';
 
 
 function App() {
@@ -62,6 +63,7 @@ function App() {
             <Route path="/materialui" element={<MaterialUI/>} />
             <Route path="/mainpage" element={<MainPage/>} />
             <Route path="/democoreui" element={<DemoCoreUI/>} />
+            <Route path="/imagedisplay" element={<ImageDisplay/>} />
             <Route
               path="/parentcontext"
               element={

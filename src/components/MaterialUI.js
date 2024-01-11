@@ -1,5 +1,22 @@
-import React from 'react';
-import { Button, TextField, Alert, Tab, Tabs, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, MenuItem, Select, Modal } from '@mui/material';
+import React from "react";
+import { Helmet } from "react-helmet";
+import {
+  Button,
+  TextField,
+  Alert,
+  Tab,
+  Tabs,
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  MenuItem,
+  Select,
+  Modal,
+} from "@mui/material";
 
 const MaterialUI = () => {
   const [alertVisible, setAlertVisible] = React.useState(true);
@@ -20,6 +37,9 @@ const MaterialUI = () => {
 
   return (
     <div className="material-ui-demo-component">
+      <Helmet>
+        <title>Page Material-UI</title>
+      </Helmet>
       <h2>Material-UI Demo Component</h2>
 
       {/* Button */}
@@ -28,7 +48,12 @@ const MaterialUI = () => {
       </Button>
 
       {/* TextField */}
-      <TextField label="Username" variant="outlined" margin="normal" fullWidth />
+      <TextField
+        label="Username"
+        variant="outlined"
+        margin="normal"
+        fullWidth
+      />
 
       {/* Alert */}
       {alertVisible && (
@@ -104,11 +129,7 @@ function TabPanel(props) {
       aria-labelledby={`simple-tab-${index}`}
       {...other}
     >
-      {value === index && (
-        <div>
-          {children}
-        </div>
-      )}
+      {value === index && <div>{children}</div>}
     </div>
   );
 }
