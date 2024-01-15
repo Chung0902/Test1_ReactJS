@@ -19,24 +19,24 @@ Trong một dự án ReactJS, bạn sẽ muốn bỏ qua ít nhất các tệp v
 /node_modules
 
 ##### Builds
-/build
+/build </br>
 /dist
 
 ##### Testing
 /coverage
 
 ##### Production
-.env.local
-.env.development.local
-.env.test.local
+.env.local</br>
+.env.development.local</br>
+.env.test.local</br>
 .env.production.local
 
 ##### Misc
-.DS_Store
+.DS_Store</br>
 
-*.log
-npm-debug.log*
-yarn-debug.log*
+*.log</br>
+npm-debug.log*</br>
+yarn-debug.log*</br>
 yarn-error.log*
 
 ##### IDEs and editors
@@ -52,11 +52,11 @@ yarn-error.log*
 
 ##### Operating System Files
 .DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
+.DS_Store?</br>
+._*</br>
+.Spotlight-V100</br>
+.Trashes</br>
+ehthumbs.db</br>
 Thumbs.db
 ### Giải thích:
 
