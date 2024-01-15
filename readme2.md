@@ -40,13 +40,13 @@ yarn-debug.log*</br>
 yarn-error.log*
 
 ##### IDEs and editors
-.idea
-.project
-.classpath
-.c9/
+.idea</br>
+.project</br>
+.classpath</br>
+.c9/</br>
 
-*.launch
-.settings/
+*.launch</br>
+.settings/</br>
 
 *.sublime-workspace
 
