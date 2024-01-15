@@ -22,6 +22,8 @@
 //   );
 // };
 
+// ReCaptcha.jsx
+
 import React, { useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 import { useTranslation } from "react-i18next";
@@ -42,7 +44,7 @@ const ReCaptcha = ({ handleRecaptchaChange }) => {
     <div className="captcha captcha2">
       <ReCAPTCHA
         key={t("recaptcha_language")} //Thêm khóa vào để thay đổi đa ngôn ngữ 
-        sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
+        sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
         onChange={onRecaptchaChange}
         hl={t("recaptcha_language")}
       />
@@ -51,3 +53,4 @@ const ReCaptcha = ({ handleRecaptchaChange }) => {
 };
 
 export default ReCaptcha;
+
