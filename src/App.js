@@ -35,6 +35,7 @@ import MainPage from "./components/MainPage";
 import DemoCoreUI from "./components/DemoCoreUI";
 import ImageDisplay from './components/ImageDisplay';
 import { Helmet } from 'react-helmet';
+import StudentsTable from './components/StudentsTable';
 
 
 function App() {
@@ -65,6 +66,7 @@ function App() {
             <Route path="/mainpage" element={<MainPage/>} />
             <Route path="/democoreui" element={<DemoCoreUI/>} />
             <Route path="/imagedisplay" element={<ImageDisplay/>} />
+            <Route path="/studentstable" element={<StudentsTable/>} />
             <Route
               path="/parentcontext"
               element={
