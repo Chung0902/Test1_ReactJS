@@ -1,29 +1,35 @@
 // StudentsTable.js
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Student from './Student';
-import Popup from './Popup';
+import Modal from 'react-modal';
 import {
   fetchStudents,
-  saveStudents,
   addStudent,
   deleteStudent,
   updateStudent,
 } from '../../src/utils/localStorageUtil.js';
 import '../styles/student.css';
+import PopupEdit from './PopupEdit';
+import Popup from './Popup';
 
 const StudentsTable = () => {
-  const [students, setStudents] = React.useState(fetchStudents);
-  const [isPopupOpen, setIsPopupOpen] = React.useState(false);
-  const [selectedStudent, setSelectedStudent] = React.useState(null);
+  const [students, setStudents] = useState(fetchStudents);
+  const [isEditPopupOpen, setIsEditPopupOpen] = useState(false);
+  const [selectedStudent, setSelectedStudent] = useState(null);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+  useEffect(() => {
+    setStudents(fetchStudents());
+  }, [isEditPopupOpen, isPopupOpen]);
 
   const handleAddStudent = (newStudent) => {
     addStudent({ id: Date.now(), ...newStudent });
-    setStudents(fetchStudents());
+    closeModal();
   };
 
   const handleEditStudent = (editedStudent) => {
     updateStudent(editedStudent);
-    setStudents(fetchStudents());
+    closeModal();
   };
 
   const handleDeleteStudent = (id) => {
@@ -33,8 +39,28 @@ const StudentsTable = () => {
     }
   };
 
+  const openModal = (action) => {
+    setIsEditPopupOpen(action === 'edit');
+    setIsPopupOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsPopupOpen(false);
+    setIsEditPopupOpen(false);
+    setSelectedStudent(null);
+  };
+
+  const handleSubmit = (formData) => {
+    if (!isEditPopupOpen) {
+      handleAddStudent(formData);
+    } else {
+      handleEditStudent({ ...selectedStudent, ...formData });
+    }
+  };
+
   return (
-    <div>
+    <div className='students'>
+      <button className='students' onClick={() => openModal('add')}>New</button>
       <table>
         <thead>
           <tr>
@@ -49,31 +75,42 @@ const StudentsTable = () => {
             <Student
               key={student.id}
               {...student}
-              onDelete={handleDeleteStudent}
-              onEdit={(id) => {
-                setSelectedStudent(students.find((s) => s.id === id));
-                setIsPopupOpen(true);
+              onDelete={() => handleDeleteStudent(student.id)}
+              onEdit={() => {
+                setSelectedStudent(student);
+                openModal('edit');
               }}
             />
           ))}
         </tbody>
       </table>
-      <button onClick={() => setIsPopupOpen(true)}>New</button>
-      <Popup
+
+      <Modal
         isOpen={isPopupOpen}
-        onClose={() => {
-          setIsPopupOpen(false);
-          setSelectedStudent(null);
-        }}
-        onSubmit={(formData) => {
-          if (selectedStudent) {
-            handleEditStudent({ ...selectedStudent, ...formData });
-          } else {
-            handleAddStudent(formData);
-          }
-        }}
-        initialValues={selectedStudent}
-      />
+        onRequestClose={closeModal}
+        contentLabel={isEditPopupOpen ? 'Edit Student Modal' : 'Add Student Modal'}
+      >
+        <div>
+          <h2>{isEditPopupOpen ? 'Edit Student' : 'Add Student'}</h2>
+          {isEditPopupOpen ? (
+            <PopupEdit
+              isOpen={isEditPopupOpen}
+              onClose={closeModal}
+              onSubmit={(formData) => {
+                handleEditStudent({ ...selectedStudent, ...formData });
+              }}
+              initialValues={selectedStudent}
+            />
+          ) : (
+            <Popup
+              isOpen={isPopupOpen}
+              onClose={closeModal}
+              onSubmit={handleSubmit}
+              initialValues={selectedStudent}
+            />
+          )}
+        </div>
+      </Modal>
     </div>
   );
 };

@@ -4,6 +4,10 @@ import React from 'react';
 const Popup = ({ isOpen, onClose, onSubmit, initialValues }) => {
   const [formData, setFormData] = React.useState(initialValues || {});
 
+  React.useEffect(() => {
+    setFormData(initialValues || {});
+  }, [initialValues]);
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -11,10 +15,11 @@ const Popup = ({ isOpen, onClose, onSubmit, initialValues }) => {
   const handleSubmit = () => {
     onSubmit(formData);
     onClose();
+    setFormData({}); // Đặt formData về trạng thái rỗng
   };
 
   return (
-    <div style={{ display: isOpen ? 'block' : 'none' }}>
+    <div className='students' style={{ display: isOpen ? 'block' : 'none' }}>
       <input
         type="text"
         name="name"

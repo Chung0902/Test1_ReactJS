@@ -3,7 +3,7 @@ import React from 'react';
 
 const Student = ({ id, name, age, onDelete, onEdit }) => {
   return (
-    <tr>
+    <tr className='students'>
       <td>{id}</td>
       <td>{name}</td>
       <td>{age}</td>
