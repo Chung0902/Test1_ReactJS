@@ -34,9 +34,10 @@ import MaterialUI from "./components/MaterialUI";
 import MainPage from "./components/MainPage";
 import DemoCoreUI from "./components/DemoCoreUI";
 import ImageDisplay from './components/ImageDisplay';
-import { Helmet } from 'react-helmet';
 import StudentsTable from './components/StudentsTable';
 import EnrollmentForm from "./components/EnrollmentForm";
+import StudentForm from './components/StudentForm';
+
 
 
 function App() {
@@ -69,6 +70,9 @@ function App() {
             <Route path="/imagedisplay" element={<ImageDisplay/>} />
             <Route path="/studentstable" element={<StudentsTable/>} />
             <Route path="/enrollmentform" element={<EnrollmentForm/>} />
+           
+            <Route path="/StudentForm" element={<StudentForm/>} />
+
             <Route
               path="/parentcontext"
               element={
