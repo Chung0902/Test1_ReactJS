@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PopupB from "./PopupB";
-import "../styles/Popup.css";
-import LanguageSelector from "../components/LanguageSelector";
+import "../../styles/Popup.css";
+import LanguageSelector from "./LanguageSelector";
 import { useTranslation } from "react-i18next";
 
 const DemoCoreUI = () => {

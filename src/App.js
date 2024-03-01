@@ -23,22 +23,21 @@ import ParentComponent2 from "./components/ParentComponent2";
 import store from "../src/store";
 import { AuthProvider } from "./context/AuthContext";
 import { Provider as ReduxProvider } from "react-redux";
-import DashboardPage from './pages/DashboardPage';
-import DashboardContextAPI from './pages/DashboardContextAPI';
+import DashboardPage from "./pages/DashboardPage";
+import DashboardContextAPI from "./pages/DashboardContextAPI";
 import Profile from "./components/Profile";
-import NotFoundPage from './components/NotFoundPage';
-import ReactBootstrap from './components/ReactBootstrap';
-import CoreUI from "./components/CoreUI";
-import PrimeReact from './components/PrimeReact';
-import MaterialUI from "./components/MaterialUI";
+import NotFoundPage from "./components/NotFoundPage";
+import ReactBootstrap from "./components/Baitap22/ReactBootstrap";
+import CoreUI from "./components/Baitap24/CoreUI";
+import PrimeReact from "./components/Baitap23/PrimeReact";
+import MaterialUI from "./components/Baitap25/MaterialUI";
 import MainPage from "./components/MainPage";
-import DemoCoreUI from "./components/DemoCoreUI";
-import ImageDisplay from './components/ImageDisplay';
-import StudentsTable from './components/StudentsTable';
-import EnrollmentForm from "./components/EnrollmentForm";
-import StudentForm from './components/StudentForm';
+import DemoCoreUI from "./components/Baitap30/DemoCoreUI";
+import ImageDisplay from "./components/Baitap31/ImageDisplay";
 
-
+import EnrollmentForm from "./components/Baitap38/EnrollmentForm";
+import StudentForm from "./components/Baitap39/StudentForm";
+import StudentsTable from "./components/Baitap37/StudentsTable";
 
 function App() {
   return (
@@ -58,20 +57,23 @@ function App() {
             <Route path="/parentComponent1" element={<ParentComponent1 />} />
             <Route path="/parentComponent2" element={<ParentComponent2 />} />
             <Route path="/dashboard" element={<DashboardPage />} />
-            <Route path="/dashboardcontextAPI" element={<DashboardContextAPI />} />
-            <Route path="/profile" element={<Profile/>} />
-            <Route path="*" element={<NotFoundPage/>} />
-            <Route path="/reactbootstrap" element={<ReactBootstrap/>} />
-            <Route path="/primereact" element={<PrimeReact/>} />
-            <Route path="/coreui" element={<CoreUI/>} />
-            <Route path="/materialui" element={<MaterialUI/>} />
-            <Route path="/mainpage" element={<MainPage/>} />
-            <Route path="/democoreui" element={<DemoCoreUI/>} />
-            <Route path="/imagedisplay" element={<ImageDisplay/>} />
-            <Route path="/studentstable" element={<StudentsTable/>} />
-            <Route path="/enrollmentform" element={<EnrollmentForm/>} />
-           
-            <Route path="/StudentForm" element={<StudentForm/>} />
+            <Route
+              path="/dashboardcontextAPI"
+              element={<DashboardContextAPI />}
+            />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="*" element={<NotFoundPage />} />
+            <Route path="/reactbootstrap" element={<ReactBootstrap />} />
+            <Route path="/primereact" element={<PrimeReact />} />
+            <Route path="/coreui" element={<CoreUI />} />
+            <Route path="/materialui" element={<MaterialUI />} />
+            <Route path="/mainpage" element={<MainPage />} />
+            <Route path="/democoreui" element={<DemoCoreUI />} />
+            <Route path="/imagedisplay" element={<ImageDisplay />} />
+            <Route path="/studentstable" element={<StudentsTable />} />
+            <Route path="/enrollmentform" element={<EnrollmentForm />} />
+
+            <Route path="/StudentForm" element={<StudentForm />} />
 
             <Route
               path="/parentcontext"

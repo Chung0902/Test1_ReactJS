@@ -17,7 +17,7 @@ const PopupEdit = ({ isOpen, onClose, onSubmit, initialValues }) => {
   };
 
   return (
-    <div style={{ display: isOpen ? 'block' : 'none' }}>
+    <div className='students' style={{ display: isOpen ? 'block' : 'none' }}>
       <label>
         Name:
         <input

@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/frameworks.css";
+import "../../styles/frameworks.css";
 import { 
   Container, 
   Row, 

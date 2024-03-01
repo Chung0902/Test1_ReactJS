@@ -41,7 +41,7 @@ import chibiImage from "../images/chibi2.png";
 import FormLogin from "../components/FormLogin";
 import LoginContextAPI from "../components/LoginContextAPI";
 import LayoutFrontend from "../components/layouts/LayoutFrontend";
-import LanguageSelector from "../components/LanguageSelector";
+import LanguageSelector from "../components/Baitap30/LanguageSelector";
 import { useTranslation } from "react-i18next";
 
 const Login = () => {

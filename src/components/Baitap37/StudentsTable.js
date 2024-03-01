@@ -1,16 +1,16 @@
 // StudentsTable.js
 import React, { useState, useEffect } from 'react';
-import Student from './Student';
+import Student from '../Student.js';
 import Modal from 'react-modal';
 import {
   fetchStudents,
   addStudent,
   deleteStudent,
   updateStudent,
-} from '../../src/utils/localStorageUtil.js';
-import '../styles/student.css';
-import PopupEdit from './PopupEdit';
-import Popup from './Popup';
+} from '../../utils/localStorageUtil.js';
+import '../../styles/student.css';
+import PopupEdit from './PopupEdit.js';
+import Popup from '../Baitap37/Popup.js';
 
 const StudentsTable = () => {
   const [students, setStudents] = useState(fetchStudents);

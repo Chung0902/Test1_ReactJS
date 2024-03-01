@@ -6,7 +6,7 @@ import { Message } from 'primereact/message';
 import { TabView, TabPanel } from 'primereact/tabview';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
-import './../styles/PrimeReact.css'
+import '../../styles/PrimeReact.css'
 
 const PrimeReact = () => {
   const data = [

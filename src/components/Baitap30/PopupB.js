@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import "../styles/Popup.css";
+import "../../styles/Popup.css";
 import { useTranslation } from "react-i18next";
-import LanguageSelector from './LanguageSelector';
+
 
 const PopupB = ({ onClose, onImageSelect }) => {
   const [uploadedImage, setUploadedImage] = useState(null);

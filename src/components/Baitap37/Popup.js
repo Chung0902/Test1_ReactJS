@@ -1,5 +1,6 @@
 // Popup.js
 import React from 'react';
+import '../../styles/student.css';
 
 const Popup = ({ isOpen, onClose, onSubmit, initialValues }) => {
   const [formData, setFormData] = React.useState(initialValues || {});
@@ -26,6 +27,7 @@ const Popup = ({ isOpen, onClose, onSubmit, initialValues }) => {
         placeholder="Name"
         value={formData.name || ''}
         onChange={handleChange}
+        className='input'
       />
       <input
         type="text"
@@ -33,6 +35,7 @@ const Popup = ({ isOpen, onClose, onSubmit, initialValues }) => {
         placeholder="Age"
         value={formData.age || ''}
         onChange={handleChange}
+        className='input'
       />
       <button onClick={handleSubmit}>Add student</button>
       <button onClick={onClose}>Close</button>
