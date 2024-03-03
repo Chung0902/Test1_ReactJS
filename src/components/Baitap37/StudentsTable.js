@@ -9,7 +9,7 @@ import {
 } from "../../utils/localStorageUtil.js";
 import "../../styles/student.css";
 import PopupEdit from "./PopupEdit.js";
-import Popup from "../Baitap37/Popup.js";
+import Popup from "./PopupAdd.js";
 
 // Component chính quản lý thông tin sinh viên
 const StudentsTable = () => {
@@ -20,18 +20,28 @@ const StudentsTable = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   // useEffect để cập nhật danh sách sinh viên khi có sự thay đổi trong popup
-  useEffect(() => {
-    setStudents(fetchStudents());
+  useEffect(() => {   
+    // Gọi hàm fetchStudents để lấy danh sách sinh viên mới từ local storage
+    const updatedStudents = fetchStudents();
+    
+    // Đặt danh sách sinh viên trong state thành danh sách mới
+    setStudents(updatedStudents);
   }, [isEditPopupOpen, isPopupOpen]);
+  
 
   // Hàm xử lý thêm sinh viên
   const handleAddStudent = (newStudent) => {
-    addStudent({ id: Date.now(), ...newStudent });
+    // Tạo một đối tượng sinh viên mới với id là timestamp hiện tại và thông tin từ newStudent
+    const studentToAdd = { id: Date.now(), ...newStudent };
+    // Gọi hàm addStudent để thêm sinh viên vào danh sách trong local storage
+    addStudent(studentToAdd);
     closeModal();
   };
+  
 
   // Hàm xử lý chỉnh sửa sinh viên
   const handleEditStudent = (editedStudent) => {
+    // Gọi hàm updateStudent để cập nhật thông tin của sinh viên đã chỉnh sửa
     updateStudent(editedStudent);
     closeModal();
   };
@@ -40,10 +50,13 @@ const StudentsTable = () => {
   const handleDeleteStudent = (id) => {
     // Hiển thị cảnh báo xác nhận trước khi xóa
     if (window.confirm("Bạn chắc chắn muốn xóa không?")) {
+      // Gọi hàm deleteStudent để xóa sinh viên khỏi danh sách trong local storage
       deleteStudent(id);
+      // Cập nhật danh sách sinh viên trong state bằng cách gọi hàm fetchStudents
       setStudents(fetchStudents());
     }
   };
+  
 
   // Hàm mở popup với mục đích thêm mới hoặc chỉnh sửa sinh viên
   const openModal = (action) => {

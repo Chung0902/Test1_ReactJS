@@ -6,7 +6,7 @@ const Popup = ({ isOpen, onClose, onSubmit, initialValues }) => {
   // State để lưu trữ dữ liệu của sinh viên và cập nhật khi có thay đổi
   const [formData, setFormData] = React.useState(initialValues || {});
 
-  // useEffect để cập nhật dữ liệu khi có sự thay đổi ở initialValues
+  // useEffect để cập nhật dữ liệu khi có sự thay đổi ở initialValues(giá trị ban đầu)
   React.useEffect(() => {
     setFormData(initialValues || {});
   }, [initialValues]);
@@ -46,10 +46,7 @@ const Popup = ({ isOpen, onClose, onSubmit, initialValues }) => {
         className='input'
       />
 
-      {/* Nút để thực hiện thêm mới sinh viên */}
       <button onClick={handleSubmit}>Add student</button>
-
-      {/* Nút để đóng Popup */}
       <button onClick={onClose}>Close</button>
     </div>
   );

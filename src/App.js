@@ -38,11 +38,24 @@ import ImageDisplay from "./components/Baitap31/ImageDisplay";
 import EnrollmentForm from "./components/Baitap38/EnrollmentForm";
 import StudentForm from "./components/Baitap39/StudentForm";
 import StudentsTable from "./components/Baitap37/StudentsTable";
+import ComponentExample from './components/Baitap41/ComponentExample';
+import DemoUseFormik from './components/Baitap42/DemoUseFormik';
+import ScrollToTop from './components/Baitap43/ScrollToTopButton';
+
+import React, { useEffect } from 'react';
+import ScrollToTopButton from './components/Baitap43/ScrollToTopButton';
 
 function App() {
+
+  useEffect(() => {
+    // Thực hiện cuộn trang lên đầu khi component được render
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <ReduxProvider store={store}>
       <Router>
+      <ScrollToTop />
         <AuthProvider>
           <Routes>
             <Route path="/" element={<Login />} />
@@ -74,6 +87,10 @@ function App() {
             <Route path="/enrollmentform" element={<EnrollmentForm />} />
 
             <Route path="/StudentForm" element={<StudentForm />} />
+            <Route path="/ComponentExample" element={<ComponentExample />} />
+            <Route path="/DemoUseFormik" element={<DemoUseFormik />} />
+           
+           
 
             <Route
               path="/parentcontext"
@@ -94,6 +111,7 @@ function App() {
           </Routes>
         </AuthProvider>
       </Router>
+      <ScrollToTopButton />
     </ReduxProvider>
   );
 }

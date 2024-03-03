@@ -25,7 +25,6 @@ const PopupEdit = ({ isOpen, onClose, onSubmit, initialValues }) => {
   // Giao diện của component PopupEdit
   return (
     <div className='students' style={{ display: isOpen ? 'block' : 'none' }}>
-      {/* Input để nhập tên sinh viên */}
       <label>
         Name:
         <input
@@ -36,8 +35,6 @@ const PopupEdit = ({ isOpen, onClose, onSubmit, initialValues }) => {
           onChange={handleChange}
         />
       </label>
-
-      {/* Input để nhập tuổi sinh viên */}
       <label>
         Age:
         <input
