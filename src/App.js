@@ -40,7 +40,6 @@ import StudentForm from "./components/Baitap39/StudentForm";
 import StudentsTable from "./components/Baitap37/StudentsTable";
 import ComponentExample from './components/Baitap41/ComponentExample';
 import DemoUseFormik from './components/Baitap42/DemoUseFormik';
-import ScrollToTop from './components/Baitap43/ScrollToTopButton';
 
 import React, { useEffect } from 'react';
 import ScrollToTopButton from './components/Baitap43/ScrollToTopButton';
@@ -55,7 +54,6 @@ function App() {
   return (
     <ReduxProvider store={store}>
       <Router>
-      <ScrollToTop />
         <AuthProvider>
           <Routes>
             <Route path="/" element={<Login />} />

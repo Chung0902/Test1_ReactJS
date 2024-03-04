@@ -11,33 +11,38 @@ const ComponentExample = () => {
     setToastRef(toast.current);
   }, []);
 
-  // Các hàm xử lý sự kiện khi người dùng click vào các nút, gọi các hàm hiển thị toast tương ứng.
+  // Hàm xử lý sự kiện khi người dùng click vào nút "Show Success Toast".
   const handleSuccess = () => {
-    showSuccessToast('Success', 'Operation completed successfully.');
+    showSuccessToast('Success', 'Operation completed successfully', '#4CAF50');
   };
 
+  // Hàm xử lý sự kiện khi người dùng click vào nút "Show Info Toast".
   const handleInfo = () => {
-    showInfoToast('Info', 'This is an informative message.');
+    showInfoToast('Info', 'This is an informative message', '#2196F3');
   };
 
+  // Hàm xử lý sự kiện khi người dùng click vào nút "Show Warning Toast".
   const handleWarning = () => {
-    showWarningToast('Warning', 'Be cautious with this action.');
+    showWarningToast('Warning', 'Be cautious with this action', '#FFC107');
   };
 
+  // Hàm xử lý sự kiện khi người dùng click vào nút "Show Error Toast".
   const handleError = () => {
-    showErrorToast('Error', 'Something went wrong. Please try again.');
+    showErrorToast('Error', 'Something went wrong. Please try again', '#FF5252');
   };
 
   return (
     <div>
+
       <Toast ref={toast} />
 
-      <button onClick={handleSuccess}>Show Success Toast</button>
-      <button onClick={handleInfo}>Show Info Toast</button>
-      <button onClick={handleWarning}>Show Warning Toast</button>
-      <button onClick={handleError}>Show Error Toast</button>
+      <button onClick={handleSuccess} style={{ backgroundColor: '#4CAF50', color: '#fff' }}>Show Success Toast</button>
+      <button onClick={handleInfo} style={{ backgroundColor: '#2196F3', color: '#fff' }}>Show Info Toast</button>
+      <button onClick={handleWarning} style={{ backgroundColor: '#FFC107', color: '#fff' }}>Show Warning Toast</button>
+      <button onClick={handleError} style={{ backgroundColor: '#FF5252', color: '#fff' }}>Show Error Toast</button>
     </div>
   );
 };
+
 
 export default ComponentExample;
