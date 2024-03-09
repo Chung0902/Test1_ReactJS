@@ -1,66 +1,82 @@
 import React, { useState, useEffect } from "react";
-import Student from "./Student.js";
-import Modal from "react-modal";
-import {
-  fetchStudents,
-  addStudent,
-  deleteStudent,
-  updateStudent,
-} from "../../utils/localStorageUtil.js";
-import "../../styles/student.css";
-import PopupEdit from "./PopupEdit.js";
-import Popup from "./PopupAdd.js";
+import Student from "./Student.js"; 
+import Modal from "react-modal"; 
+import { fetchStudents, addStudent, deleteStudent, updateStudent } from "../../utils/localStorageUtil.js";  
+import "../../styles/student.css"; 
+import PopupEdit from "./PopupEdit.js"; 
+import Popup from "./PopupAdd.js"; 
+import SearchBar from './../Baitap44/SearchBar'; 
 
-// Component chính quản lý thông tin sinh viên
 const StudentsTable = () => {
-  // State để lưu trữ danh sách sinh viên và trạng thái của các popup
-  const [students, setStudents] = useState(fetchStudents);
+  // Khai báo các state sử dụng trong component
+  const [students, setStudents] = useState([]);  
   const [isEditPopupOpen, setIsEditPopupOpen] = useState(false);
-  const [selectedStudent, setSelectedStudent] = useState(null);
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [selectedStudent, setSelectedStudent] = useState(null);  
+  const [isPopupOpen, setIsPopupOpen] = useState(false);  
+  const [filteredStudents, setFilteredStudents] = useState([]);  // Danh sách sinh viên được lọc dựa trên kết quả tìm kiếm
+  const [searchTerm, setSearchTerm] = useState("");  // Từ khóa tìm kiếm
 
-  // useEffect để cập nhật danh sách sinh viên khi có sự thay đổi trong popup
-  useEffect(() => {   
-    // Gọi hàm fetchStudents để lấy danh sách sinh viên mới từ local storage
-    const updatedStudents = fetchStudents();
-    
-    // Đặt danh sách sinh viên trong state thành danh sách mới
-    setStudents(updatedStudents);
+  useEffect(() => {
+    // Sử dụng useEffect để fetch dữ liệu sinh viên từ localStorage khi có sự thay đổi trong trạng thái của các popup
+    const fetchData = async () => {
+      const data = await fetchStudents();  // Hàm fetchStudents trả về danh sách sinh viên
+      setStudents(data);
+      setFilteredStudents(data);
+    };
+
+    fetchData();
   }, [isEditPopupOpen, isPopupOpen]);
-  
 
-  // Hàm xử lý thêm sinh viên
+  // Hàm xử lý tìm kiếm sinh viên
+  const handleSearch = async (term) => {
+    setSearchTerm(term);
+
+    const data = await fetchStudents();  // Fetch lại danh sách sinh viên từ  localStorage
+
+    // Lọc sinh viên dựa trên từ khóa tìm kiếm
+    const results = data.filter((student) => {
+      return student.name.toLowerCase().includes(term.toLowerCase());
+    });
+
+    setFilteredStudents(results);
+  };
+
+  // Hàm xử lý thêm mới sinh viên
   const handleAddStudent = (newStudent) => {
-    // Tạo một đối tượng sinh viên mới với id là timestamp hiện tại và thông tin từ newStudent
-    const studentToAdd = { id: Date.now(), ...newStudent };
-    // Gọi hàm addStudent để thêm sinh viên vào danh sách trong local storage
-    addStudent(studentToAdd);
+    const studentToAdd = { id: Date.now(), ...newStudent };  // Tạo đối tượng sinh viên mới với id là thời điểm hiện tại
+    addStudent(studentToAdd);  // Gọi hàm addStudent từ localStorageUtil để thêm sinh viên mới
     closeModal();
   };
-  
 
-  // Hàm xử lý chỉnh sửa sinh viên
+  // Hàm xử lý sửa thông tin sinh viên
   const handleEditStudent = (editedStudent) => {
-    // Gọi hàm updateStudent để cập nhật thông tin của sinh viên đã chỉnh sửa
-    updateStudent(editedStudent);
+    updateStudent(editedStudent);  // Gọi hàm updateStudent từ localStorageUtil để cập nhật thông tin sinh viên
     closeModal();
   };
 
   // Hàm xử lý xóa sinh viên
-  const handleDeleteStudent = (id) => {
-    // Hiển thị cảnh báo xác nhận trước khi xóa
-    if (window.confirm("Bạn chắc chắn muốn xóa không?")) {
-      // Gọi hàm deleteStudent để xóa sinh viên khỏi danh sách trong local storage
-      deleteStudent(id);
-      // Cập nhật danh sách sinh viên trong state bằng cách gọi hàm fetchStudents
-      setStudents(fetchStudents());
-    }
-  };
-  
+const handleDeleteStudent = async (id) => {
+  // Hiển thị cảnh báo xác nhận trước khi xóa
+  if (window.confirm("Bạn chắc chắn muốn xóa không?")) {
+    // Gọi hàm deleteStudent từ localStorageUtil để xóa sinh viên
+    await deleteStudent(id);
 
-  // Hàm mở popup với mục đích thêm mới hoặc chỉnh sửa sinh viên
+    // Cập nhật lại danh sách sinh viên
+    const updatedStudents = await fetchStudents();
+    setStudents(updatedStudents);
+    
+    // Lọc lại danh sách sinh viên dựa trên từ khóa tìm kiếm
+    const filteredResults = updatedStudents.filter((student) => {
+      return student.name.toLowerCase().includes(searchTerm.toLowerCase());
+    });
+    setFilteredStudents(filteredResults);
+  }
+};
+
+
+  // Hàm mở popup thêm mới hoặc sửa thông tin sinh viên
   const openModal = (action) => {
-    setIsEditPopupOpen(action === "edit");
+    setIsEditPopupOpen(action === "edit");  // Xác định xem là mở popup sửa thông tin hay thêm mới
     setIsPopupOpen(true);
   };
 
@@ -71,24 +87,24 @@ const StudentsTable = () => {
     setSelectedStudent(null);
   };
 
-  // Hàm xử lý khi submit dữ liệu từ popup
+  // Hàm xử lý submit form trong popup
   const handleSubmit = (formData) => {
-    // Kiểm tra xem popup đang ở chế độ thêm mới hay chỉnh sửa
+    // Nếu không phải là mở popup sửa thông tin, thì thực hiện thêm mới sinh viên
     if (!isEditPopupOpen) {
-      // Nếu ở chế độ thêm mới, gọi hàm xử lý thêm mới sinh viên
       handleAddStudent(formData);
     } else {
-      // Nếu ở chế độ chỉnh sửa, gọi hàm xử lý chỉnh sửa với dữ liệu được kết hợp giữa thông tin sinh viên đã chọn và dữ liệu mới từ form
+      // Ngược lại, thực hiện sửa thông tin sinh viên đã chọn
       handleEditStudent({ ...selectedStudent, ...formData });
     }
   };
 
-  // Giao diện của component
+  // Render component StudentsTable
   return (
     <div className="students">
       <button className="students" onClick={() => openModal("add")}>
         New
       </button>
+      <SearchBar onSearch={handleSearch} />
       <table>
         <thead>
           <tr>
@@ -99,37 +115,37 @@ const StudentsTable = () => {
           </tr>
         </thead>
         <tbody>
-          {/* Mapping qua danh sách sinh viên để hiển thị từng sinh viên */}
-          {students.map((student) => (
-            // Dùng hàm map để lặp qua mảng students và tạo một Student component cho mỗi sinh viên
-            <Student
-              key={student.id} // Key là một thuộc tính đặc biệt trong React để định danh mỗi phần tử trong danh sách
-              {...student} // Sử dụng spread operator để truyền thông tin của sinh viên là các props của Student component
-              onDelete={() => handleDeleteStudent(student.id)} // Hàm xử lý xóa được truyền qua prop onDelete
-              onEdit={() => {
-                setSelectedStudent(student); // Đặt thông tin sinh viên vào state selectedStudent khi chỉnh sửa
-                openModal("edit"); // Mở cửa sổ popup ở chế độ chỉnh sửa
-              }}
-            />
-          ))}
+          {filteredStudents.length > 0 ? (
+            // Hiển thị danh sách sinh viên hoặc thông báo khi không có kết quả tìm kiếm
+            filteredStudents.map((student) => (
+              <Student
+                key={student.id}
+                {...student}
+                onDelete={() => handleDeleteStudent(student.id)}
+                onEdit={() => {
+                  setSelectedStudent(student);
+                  openModal("edit");
+                }}
+              />
+            ))
+          ) : (
+            <tr>
+              <td colSpan="4">Không có kết quả tìm kiếm.</td>
+            </tr>
+          )}
         </tbody>
       </table>
 
-      {/* Cửa sổ popup sử dụng thư viện 'react-modal' */}
+      {/* Hiển thị popup thêm mới hoặc sửa thông tin sinh viên */}
       <Modal
-        isOpen={isPopupOpen} // Trạng thái mở hoặc đóng của cửa sổ modal
-        onRequestClose={closeModal} // Hàm được gọi khi người dùng đóng cửa sổ modal
-        contentLabel={
-          isEditPopupOpen ? "Edit Student Modal" : "Add Student Modal"
-        } // Mô tả nội dung của cửa sổ modal để người dùng hiểu nội dung chính là gì
+        isOpen={isPopupOpen}
+        onRequestClose={closeModal}
+        contentLabel={isEditPopupOpen ? "Edit Student Modal" : "Add Student Modal"}
       >
         <div>
-          {/* Tiêu đề của popup tùy thuộc vào việc thêm mới hoặc chỉnh sửa sinh viên */}
           <h2>{isEditPopupOpen ? "Edit Student" : "Add Student"}</h2>
-
-          {/* Nếu đang trong quá trình chỉnh sửa, sử dụng PopupEdit, ngược lại sử dụng Popup */}
           {isEditPopupOpen ? (
-            // Sử dụng PopupEdit khi ở chế độ chỉnh sửa
+            // Nếu là popup sửa thông tin, render component PopupEdit
             <PopupEdit
               isOpen={isEditPopupOpen}
               onClose={closeModal}
@@ -139,7 +155,7 @@ const StudentsTable = () => {
               initialValues={selectedStudent}
             />
           ) : (
-            // Sử dụng Popup khi ở chế độ thêm mới
+            // Ngược lại, render component Popup để thêm mới sinh viên
             <Popup
               isOpen={isPopupOpen}
               onClose={closeModal}
@@ -153,4 +169,4 @@ const StudentsTable = () => {
   );
 };
 
-export default StudentsTable;
+export default StudentsTable; 

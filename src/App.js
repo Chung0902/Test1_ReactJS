@@ -41,15 +41,11 @@ import StudentsTable from "./components/Baitap37/StudentsTable";
 import ComponentExample from './components/Baitap41/ComponentExample';
 import DemoUseFormik from './components/Baitap42/DemoUseFormik';
 
-import React, { useEffect } from 'react';
-import ScrollToTopButton from './components/Baitap43/ScrollToTopButton';
+
+import ScrollToTopButton from 'react-scroll-to-top';
 
 function App() {
 
-  useEffect(() => {
-    // Thực hiện cuộn trang lên đầu khi component được render
-    window.scrollTo(0, 0);
-  }, []);
 
   return (
     <ReduxProvider store={store}>
@@ -107,9 +103,9 @@ function App() {
               }
             />
           </Routes>
+          <ScrollToTopButton />
         </AuthProvider>
       </Router>
-      <ScrollToTopButton />
     </ReduxProvider>
   );
 }
