@@ -43,12 +43,16 @@ import DemoUseFormik from './components/Baitap42/DemoUseFormik';
 
 
 import ScrollToTopButton from 'react-scroll-to-top';
+import { StudentProvider } from './context/StudentContext';
+import StudentsTable1 from "./components/Baitap45/StudentsTable";
+
 
 function App() {
 
 
   return (
     <ReduxProvider store={store}>
+      <StudentProvider>
       <Router>
         <AuthProvider>
           <Routes>
@@ -84,7 +88,7 @@ function App() {
             <Route path="/ComponentExample" element={<ComponentExample />} />
             <Route path="/DemoUseFormik" element={<DemoUseFormik />} />
            
-           
+            <Route path="/studentstable1" element={<StudentsTable1 />} />
 
             <Route
               path="/parentcontext"
@@ -106,6 +110,7 @@ function App() {
           <ScrollToTopButton />
         </AuthProvider>
       </Router>
+      </StudentProvider>
     </ReduxProvider>
   );
 }
