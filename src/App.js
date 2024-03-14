@@ -38,78 +38,98 @@ import ImageDisplay from "./components/Baitap31/ImageDisplay";
 import EnrollmentForm from "./components/Baitap38/EnrollmentForm";
 import StudentForm from "./components/Baitap39/StudentForm";
 import StudentsTable from "./components/Baitap37/StudentsTable";
-import ComponentExample from './components/Baitap41/ComponentExample';
-import DemoUseFormik from './components/Baitap42/DemoUseFormik';
+import ComponentExample from "./components/Baitap41/ComponentExample";
+import DemoUseFormik from "./components/Baitap42/DemoUseFormik";
 
-
-import ScrollToTopButton from 'react-scroll-to-top';
-import { StudentProvider } from './context/StudentContext';
+import ScrollToTopButton from "react-scroll-to-top";
+import { StudentProvider } from "./context/StudentContext";
 import StudentsTable1 from "./components/Baitap45/StudentsTable";
-
+// import { ToastProvider } from "./components/Baitap45/ToastContext";
+import ComponentExample1 from "./components/Baitap46/ComponentExample1";
+import { ToastProvider } from './utils/useToast';
 
 function App() {
-
-
   return (
     <ReduxProvider store={store}>
       <StudentProvider>
-      <Router>
-        <AuthProvider>
-          <Routes>
-            <Route path="/" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/userlist" element={<UserList />} />
-            <Route path="/useredit/:id" element={<UserEdit />} />
-            <Route path="/logingoogleoauth" element={<LoginGoogleOAuth />} />
-            <Route path="/uploadfile" element={<UploadFile />} />
-            <Route path="/parentComponent" element={<ParentComponent />} />
-            <Route path="/parent1" element={<Parent1 />} />
-            <Route path="/parent2" element={<Parent2 />} />
-            <Route path="/parentComponent1" element={<ParentComponent1 />} />
-            <Route path="/parentComponent2" element={<ParentComponent2 />} />
-            <Route path="/dashboard" element={<DashboardPage />} />
-            <Route
-              path="/dashboardcontextAPI"
-              element={<DashboardContextAPI />}
-            />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="*" element={<NotFoundPage />} />
-            <Route path="/reactbootstrap" element={<ReactBootstrap />} />
-            <Route path="/primereact" element={<PrimeReact />} />
-            <Route path="/coreui" element={<CoreUI />} />
-            <Route path="/materialui" element={<MaterialUI />} />
-            <Route path="/mainpage" element={<MainPage />} />
-            <Route path="/democoreui" element={<DemoCoreUI />} />
-            <Route path="/imagedisplay" element={<ImageDisplay />} />
-            <Route path="/studentstable" element={<StudentsTable />} />
-            <Route path="/enrollmentform" element={<EnrollmentForm />} />
+      <ToastProvider>
+        <Router>
+          <AuthProvider>
+              <Routes>
+                <Route path="/" element={<Login />} />
+                <Route path="/register" element={<Register />} />
+                <Route path="/userlist" element={<UserList />} />
+                <Route path="/useredit/:id" element={<UserEdit />} />
+                <Route
+                  path="/logingoogleoauth"
+                  element={<LoginGoogleOAuth />}
+                />
+                <Route path="/uploadfile" element={<UploadFile />} />
+                <Route path="/parentComponent" element={<ParentComponent />} />
+                <Route path="/parent1" element={<Parent1 />} />
+                <Route path="/parent2" element={<Parent2 />} />
+                <Route
+                  path="/parentComponent1"
+                  element={<ParentComponent1 />}
+                />
+                <Route
+                  path="/parentComponent2"
+                  element={<ParentComponent2 />}
+                />
+                <Route path="/dashboard" element={<DashboardPage />} />
+                <Route
+                  path="/dashboardcontextAPI"
+                  element={<DashboardContextAPI />}
+                />
+                <Route path="/profile" element={<Profile />} />
+                <Route path="*" element={<NotFoundPage />} />
+                <Route path="/reactbootstrap" element={<ReactBootstrap />} />
+                <Route path="/primereact" element={<PrimeReact />} />
+                <Route path="/coreui" element={<CoreUI />} />
+                <Route path="/materialui" element={<MaterialUI />} />
+                <Route path="/mainpage" element={<MainPage />} />
+                <Route path="/democoreui" element={<DemoCoreUI />} />
+                <Route path="/imagedisplay" element={<ImageDisplay />} />
+                <Route path="/studentstable" element={<StudentsTable />} />
+                <Route path="/enrollmentform" element={<EnrollmentForm />} />
 
-            <Route path="/StudentForm" element={<StudentForm />} />
-            <Route path="/ComponentExample" element={<ComponentExample />} />
-            <Route path="/DemoUseFormik" element={<DemoUseFormik />} />
-           
-            <Route path="/studentstable1" element={<StudentsTable1 />} />
+                <Route path="/StudentForm" element={<StudentForm />} />
+                <Route
+                  path="/ComponentExample"
+                  element={<ComponentExample />}
+                />
+                <Route path="/DemoUseFormik" element={<DemoUseFormik />} />
 
-            <Route
-              path="/parentcontext"
-              element={
-                <MyProvider>
-                  <ParentContext />
-                </MyProvider>
-              }
-            />
-            <Route
-              path="/parentcontextAPI"
-              element={
-                <MyProvider>
-                  <ParentContextAPI />
-                </MyProvider>
-              }
-            />
-          </Routes>
-          <ScrollToTopButton />
-        </AuthProvider>
-      </Router>
+                <Route path="/studentstable1" element={<StudentsTable1 />} />
+                
+                <Route
+                  path="/ComponentExample1"
+                  element={<ComponentExample1 />}
+                />
+                
+
+                <Route
+                  path="/parentcontext"
+                  element={
+                    <MyProvider>
+                      <ParentContext />
+                    </MyProvider>
+                  }
+                />
+                <Route
+                  path="/parentcontextAPI"
+                  element={
+                    <MyProvider>
+                      <ParentContextAPI />
+                    </MyProvider>
+                  }
+                />
+              </Routes>
+            
+            <ScrollToTopButton />
+          </AuthProvider>
+        </Router>
+        </ToastProvider>
       </StudentProvider>
     </ReduxProvider>
   );
