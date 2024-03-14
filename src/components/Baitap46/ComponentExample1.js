@@ -1,33 +1,37 @@
 import React from "react";
-import { Toast } from "primereact/toast";
-import { Button } from "primereact/button";
-import { useToast } from "../../utils/useToast";
+import { useToast } from "../../Hooks/useToast";
+import { Button } from 'primereact/button';
+import 'primereact/resources/themes/saga-blue/theme.css'; 
+import 'primereact/resources/primereact.min.css'; 
+import 'primeicons/primeicons.css'; 
 
-const ComponentExample = () => {
-  const toastRef = useToast();
+const ExampleComponent = () => {
+  const { showSuccessToast, showInfoToast, showWarningToast, showErrorToast } = useToast();
 
-  const handleToast = (severity, summary, detail) => {
-    toastRef.current.show({ severity, summary, detail, life: 3000, sticky: false });
+  const handleSuccess = () => {
+    showSuccessToast("Success", "Operation completed successfully");
+  };
+
+  const handleInfo = () => {
+    showInfoToast("Info", "This is an informative message");
+  };
+
+  const handleWarning = () => {
+    showWarningToast("Warning", "Be cautious with this action");
+  };
+
+  const handleError = () => {
+    showErrorToast("Error", "Something went wrong. Please try again");
   };
 
   return (
     <div>
-      <Toast ref={toastRef} />
-
-      <Button label="Success" className="p-button-success" onClick={() => handleToast("success", "Success", "Operation completed successfully")}>
-        Show Success Toast
-      </Button>
-      <Button label="Info" className="p-button-info" onClick={() => handleToast("info", "Info", "This is an informative message")}>
-        Show Info Toast
-      </Button>
-      <Button label="Warn" className="p-button-warning" onClick={() => handleToast("warn", "Warning", "Be cautious with this action")}>
-        Show Warning Toast
-      </Button>
-      <Button label="Error" className="p-button-danger" onClick={() => handleToast("error", "Error", "Something went wrong. Please try again")}>
-        Show Error Toast
-      </Button>
+      <Button onClick={handleSuccess} className="p-button-success">Show Success Toast</Button>
+      <Button onClick={handleInfo} className="p-button-info">Show Info Toast</Button>
+      <Button onClick={handleWarning} className="p-button-warning">Show Warning Toast</Button>
+      <Button onClick={handleError} className="p-button-danger">Show Error Toast</Button>
     </div>
   );
 };
 
-export default ComponentExample;
+export default ExampleComponent;

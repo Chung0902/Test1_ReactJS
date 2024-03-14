@@ -46,7 +46,7 @@ import { StudentProvider } from "./context/StudentContext";
 import StudentsTable1 from "./components/Baitap45/StudentsTable";
 // import { ToastProvider } from "./components/Baitap45/ToastContext";
 import ComponentExample1 from "./components/Baitap46/ComponentExample1";
-import { ToastProvider } from './utils/useToast';
+import { ToastProvider } from "./Hooks/useHooks";
 
 function App() {
   return (
