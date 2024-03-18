@@ -47,6 +47,7 @@ import StudentsTable1 from "./components/Baitap45/StudentsTable";
 import HookDemo from "./components/Baitap46/HookDemo";
 import { ToastProvider } from "./components/Baitap46/ToastProvider";
 import CalculatorComponent from './components/Baitap47/CalculatorComponent';
+import SidebarDemo from './components/Baitap48/SidebarDemo';
 
 function App() {
   return (
@@ -93,6 +94,7 @@ function App() {
               <Route path="/HookDemo" element={<HookDemo />} />
 
               <Route path="/CalculatorComponent" element={<CalculatorComponent />} />
+              <Route path="/SidebarDemo" element={<SidebarDemo />} />
 
               <Route
                 path="/parentcontext"
