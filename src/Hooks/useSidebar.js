@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Sidebar } from 'primereact/sidebar';
 
-
 const useSidebar = () => {
   const [visible, setVisible] = useState(false);   // Trạng thái của sidebar (có hiển thị hay không)
   const [position, setPosition] = useState('right'); // Mặc định vị trí là bên phải

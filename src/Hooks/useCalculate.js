@@ -1,34 +1,17 @@
-import { useState, useEffect } from "react";
+import { useContext } from 'react';
+import { CalculateContext } from '../components/Baitap47/CalculateProvider';
+
 
 const useCalculate = () => {
-  const [num1, setNum1] = useState(0); // State lưu trữ giá trị num1
-  const [num2, setNum2] = useState(0); // State lưu trữ giá trị num2
-  const [operation, setOperation] = useState("+"); // State lưu trữ phép toán
-  const [result, setResult] = useState(0); // State lưu trữ kết quả
+  // Sử dụng useContext để lấy giá trị từ CalculateContext
+  const calculate = useContext(CalculateContext);
 
-  // useEffect để tính toán kết quả khi có sự thay đổi trong num1, num2 hoặc operation
-  useEffect(() => {
-    switch (operation) {
-      case "+":
-        setResult(num1 + num2);
-        break;
-      case "-":
-        setResult(num1 - num2);
-        break;
-      case "*":
-        setResult(num1 * num2); 
-        break;
-      case "/":
-        setResult(num1 / num2); 
-        break;
-      default:
-        setResult(0);
-        break;
-    }
-  }, [num1, num2, operation]); // useEffect sẽ chạy lại khi có sự thay đổi trong num1, num2 hoặc operation
+  // Kiểm tra nếu không có giá trị được trả về từ CalculateContext, ném ra lỗi
+  if (!calculate) {
+    throw new Error('useCalculate must be used within a CalculateProvider');
+  }
 
-  // Trả về các giá trị và hàm cần thiết để sử dụng trong component
-  return { num1, num2, operation, result, setNum1, setNum2, setOperation };
+  return calculate;
 };
 
 export default useCalculate;
